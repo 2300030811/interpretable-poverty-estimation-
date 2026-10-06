@@ -938,11 +938,13 @@ with tab_o5:
         import json
         f_data = json.loads(fairness_path.read_text(encoding="utf-8"))
         passed_fairness = f_data.get("passed", False)
+        g_di = float(f_data.get("pooled", {}).get("gender", {}).get("disparate_impact_ratio", 0.726))
+        a_di = float(f_data.get("pooled", {}).get("age", {}).get("disparate_impact_ratio", 0.892))
+
+        f_c1, f_c2, f_c3 = st.columns(3)
         with f_c1:
-            g_di = f_data.get("pooled", {}).get("gender", {}).get("disparate_impact_ratio", 0.726)
             st.metric("Gender Disparate Impact", f"{g_di:.3f}", delta="Alert (<0.80)" if g_di < 0.80 else "Fair")
         with f_c2:
-            a_di = f_data.get("pooled", {}).get("age", {}).get("disparate_impact_ratio", 0.892)
             st.metric("Age Equity Ratio", f"{a_di:.3f}", delta="Compliant (>=0.80)")
         with f_c3:
             st.metric(
@@ -954,8 +956,8 @@ with tab_o5:
         if not passed_fairness:
             st.warning(
                 f"⚠️ **Algorithmic Fairness Audit Finding (UN SDG 10)**: Gender Disparate Impact ratio is {g_di:.3f} "
-                "(below the 0.80 EEOC/EU threshold) due to structural differences in household headship and asset registration. "
-                "While age equity complies (0.892 >= 0.80), policy deployment requires affirmative targeting calibration or group-specific thresholds."
+                f"(below the 0.80 EEOC/EU threshold) due to structural differences in household headship and asset registration. "
+                f"While age equity complies ({a_di:.3f} >= 0.80), policy deployment requires affirmative targeting calibration or group-specific thresholds."
             )
 
         fairness_csv = config.OUTPUT_RESULTS / "fairness_summary.csv"

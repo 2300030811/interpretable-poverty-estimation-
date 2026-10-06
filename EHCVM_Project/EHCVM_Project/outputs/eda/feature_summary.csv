@@ -1,0 +1,49 @@
+Country,Feature,Mean,Std,Min,Max
+Benin,hhsize,5.28,2.86,1.0,32.0
+Benin,hage,46.11,13.94,15.0,101.0
+Benin,hgender,1.22,0.42,1.0,2.0
+Benin,milieu,1.51,0.5,1.0,2.0
+Benin,halfa,0.5,0.5,0.0,1.0
+Benin,heduc,2.56,2.21,1.0,9.0
+Burkina Faso,hhsize,6.83,3.8,1.0,34.0
+Burkina Faso,hage,49.75,14.13,20.0,100.0
+Burkina Faso,hgender,1.16,0.37,1.0,2.0
+Burkina Faso,milieu,1.55,0.5,1.0,2.0
+Burkina Faso,halfa,0.42,0.49,0.0,1.0
+Burkina Faso,heduc,2.11,1.91,1.0,9.0
+Côte d'Ivoire,hhsize,4.93,2.82,1.0,28.0
+Côte d'Ivoire,hage,45.57,13.95,15.0,102.0
+Côte d'Ivoire,hgender,1.18,0.38,1.0,2.0
+Côte d'Ivoire,milieu,1.6,0.49,1.0,2.0
+Côte d'Ivoire,halfa,0.48,0.5,0.0,1.0
+Côte d'Ivoire,heduc,2.46,2.09,1.0,9.0
+Guinea-Bissau,hhsize,7.64,4.53,1.0,54.0
+Guinea-Bissau,hage,49.51,13.92,15.0,97.0
+Guinea-Bissau,hgender,1.22,0.42,1.0,2.0
+Guinea-Bissau,milieu,1.63,0.48,1.0,2.0
+Guinea-Bissau,halfa,0.59,0.49,0.0,1.0
+Guinea-Bissau,heduc,2.98,2.33,1.0,9.0
+Mali,hhsize,7.08,4.01,1.0,60.0
+Mali,hage,50.29,13.91,14.0,97.0
+Mali,hgender,1.11,0.32,1.0,2.0
+Mali,milieu,1.56,0.5,1.0,2.0
+Mali,halfa,0.46,0.5,0.0,1.0
+Mali,heduc,2.27,2.29,1.0,9.0
+Niger,hhsize,5.81,2.9,1.0,26.0
+Niger,hage,47.19,14.17,15.0,99.0
+Niger,hgender,1.2,0.4,1.0,2.0
+Niger,milieu,1.62,0.49,1.0,2.0
+Niger,halfa,0.41,0.49,0.0,1.0
+Niger,heduc,1.9,1.82,1.0,9.0
+Senegal,hhsize,8.75,5.34,1.0,53.0
+Senegal,hage,54.08,13.66,16.0,101.0
+Senegal,hgender,1.28,0.45,1.0,2.0
+Senegal,milieu,1.45,0.5,1.0,2.0
+Senegal,halfa,0.51,0.5,0.0,1.0
+Senegal,heduc,2.11,2.02,1.0,9.0
+Togo,hhsize,4.45,2.54,1.0,26.0
+Togo,hage,47.28,14.85,16.0,103.0
+Togo,hgender,1.27,0.45,1.0,2.0
+Togo,milieu,1.62,0.49,1.0,2.0
+Togo,halfa,0.64,0.48,0.0,1.0
+Togo,heduc,3.16,2.16,1.0,9.0

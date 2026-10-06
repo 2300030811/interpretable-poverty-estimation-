@@ -1,0 +1,31 @@
+{
+  "stages": {
+    "O2_baselines": {
+      "duration_s": 54.1,
+      "status": "DONE"
+    },
+    "O3_interpretable": {
+      "duration_s": 1328.0,
+      "status": "DONE"
+    },
+    "O3_tradeoff": {
+      "duration_s": 0.7,
+      "status": "DONE"
+    },
+    "O4_targeting": {
+      "duration_s": 679.3,
+      "status": "DONE"
+    },
+    "O5_acceptance": {
+      "duration_s": 0.1,
+      "status": "DONE"
+    },
+    "negative_tests": {
+      "duration_s": 507.4,
+      "status": "DONE"
+    }
+  },
+  "start": "2026-09-21T07:43:02.028350",
+  "total_duration_s": 2571.6,
+  "end": "2026-09-21T08:25:53.586878"
+}

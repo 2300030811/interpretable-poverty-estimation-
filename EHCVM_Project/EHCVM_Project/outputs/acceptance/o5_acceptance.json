@@ -1,0 +1,100 @@
+{
+  "AC-1": {
+    "ac": "AC-1",
+    "description": "Representative operation",
+    "tests": [
+      {
+        "check": "O2 baseline o2_rf_loco.json exists",
+        "passed": true
+      },
+      {
+        "check": "O2 baseline o2_xgb_loco.json exists",
+        "passed": true
+      },
+      {
+        "check": "O3 model o3_logreg_loco.json exists",
+        "passed": true
+      },
+      {
+        "check": "O3 model o3_ebm_loco.json exists",
+        "passed": true
+      },
+      {
+        "check": "O3 model o3_lgbm_loco.json exists",
+        "passed": true
+      },
+      {
+        "check": "All baseline countries evaluated (expected >=8, got 8)",
+        "passed": true
+      },
+      {
+        "check": "KPI-1: Best interpretable (LightGBM+SHAP 0.764) within 1pp of O2 reference (0.763), gap=+0.0pp",
+        "passed": true
+      },
+      {
+        "check": "KPI-1 (GAM): EBM (0.748) vs RF reference (0.740), gap=+0.8pp",
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "AC-2": {
+    "ac": "AC-2",
+    "description": "Boundary and failure operation",
+    "tests": [
+      {
+        "check": "LOCO results exist (5 files)",
+        "passed": true
+      },
+      {
+        "check": "Targeting analysis (asymmetric errors) exists",
+        "passed": true
+      },
+      {
+        "check": "Accuracy cost trade-off table exists",
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "AC-3": {
+    "ac": "AC-3",
+    "description": "Independent acceptance evidence",
+    "tests": [
+      {
+        "check": "o2_xgb_loco.json: method=LOCO (entity-separated)",
+        "passed": true
+      },
+      {
+        "check": "o3_ebm_loco.json: method=LOCO (entity-separated)",
+        "passed": true
+      },
+      {
+        "check": "Source lineage report exists",
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "AC-4": {
+    "ac": "AC-4",
+    "description": "Frozen resource envelope",
+    "tests": [
+      {
+        "check": "All results use same seed (found: {42})",
+        "passed": true
+      },
+      {
+        "check": "Data lineage hash: d02adba7",
+        "passed": true
+      },
+      {
+        "check": "Hyperparameters defined in config.MODEL_PARAMS",
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "saved_at": "2026-10-06T08:29:01.036869",
+  "seed": 42
+}

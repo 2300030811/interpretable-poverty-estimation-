@@ -1,0 +1,23 @@
+# Core Machine Learning & Data Processing
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+scipy>=1.10.0
+joblib>=1.3.0
+duckdb>=1.0.0
+
+# Advanced Models & Interpretability (O2, O3, O4)
+lightgbm>=4.0.0
+xgboost>=2.0.0
+interpret>=0.6.0
+shap>=0.44.0
+
+# Schema Validation & Quality Contracts (O1)
+pandera>=0.18.0
+
+# Visualizations & Publication Figures (O1, D7)
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# PDF & Microdata Document Processing
+PyMuPDF>=1.23.0

@@ -1,0 +1,923 @@
+{
+  "threshold": 0.35,
+  "pooled": {
+    "gender": {
+      "attribute": "Gender",
+      "group_a": {
+        "name": "Male-Headed",
+        "n": 44288,
+        "tp": 13389,
+        "fp": 6413,
+        "tn": 22342,
+        "fn": 2144,
+        "tpr": 0.8619712869374879,
+        "fpr": 0.22302208311597982,
+        "selection_rate": 0.4471188583815029,
+        "precision": 0.6761438238561761
+      },
+      "group_b": {
+        "name": "Female-Headed",
+        "n": 11634,
+        "tp": 2541,
+        "fp": 1236,
+        "tn": 7215,
+        "fn": 642,
+        "tpr": 0.7983034872761545,
+        "fpr": 0.14625488107916224,
+        "selection_rate": 0.32465188241361526,
+        "precision": 0.6727561556791104
+      },
+      "disparate_impact_ratio": 0.7260974936033832,
+      "demographic_parity_diff": 0.12246697596788764,
+      "equal_opportunity_diff": 0.0636677996613334,
+      "equalized_odds_diff": 0.07676720203681758,
+      "passes_80_percent_rule": false,
+      "status": "FAIRNESS_ALERT"
+    },
+    "geography": {
+      "attribute": "Geography",
+      "group_a": {
+        "name": "Urban",
+        "n": 24278,
+        "tp": 3585,
+        "fp": 1851,
+        "tn": 17547,
+        "fn": 1295,
+        "tpr": 0.7346311475409836,
+        "fpr": 0.09542220847510052,
+        "selection_rate": 0.22390641733256447,
+        "precision": 0.6594922737306843
+      },
+      "group_b": {
+        "name": "Rural",
+        "n": 31644,
+        "tp": 12345,
+        "fp": 5798,
+        "tn": 12010,
+        "fn": 1491,
+        "tpr": 0.8922376409366869,
+        "fpr": 0.3255840071877808,
+        "selection_rate": 0.5733472380230059,
+        "precision": 0.6804277131676129
+      },
+      "disparate_impact_ratio": 0.39052497768129146,
+      "demographic_parity_diff": 0.34944082069044147,
+      "equal_opportunity_diff": 0.15760649339570332,
+      "equalized_odds_diff": 0.23016179871268028,
+      "passes_80_percent_rule": false,
+      "status": "FAIRNESS_ALERT"
+    },
+    "age": {
+      "attribute": "Age",
+      "group_a": {
+        "name": "Working-Age (<60)",
+        "n": 43059,
+        "tp": 12550,
+        "fp": 6068,
+        "tn": 22315,
+        "fn": 2126,
+        "tpr": 0.8551376396838376,
+        "fpr": 0.21378994468519888,
+        "selection_rate": 0.43238347383822195,
+        "precision": 0.6740788484262542
+      },
+      "group_b": {
+        "name": "Elderly (>=60)",
+        "n": 12863,
+        "tp": 3380,
+        "fp": 1581,
+        "tn": 7242,
+        "fn": 660,
+        "tpr": 0.8366336633663366,
+        "fpr": 0.1791907514450867,
+        "selection_rate": 0.38567985695405427,
+        "precision": 0.6813142511590405
+      },
+      "disparate_impact_ratio": 0.8919856569225816,
+      "demographic_parity_diff": 0.04670361688416769,
+      "equal_opportunity_diff": 0.018503976317501003,
+      "equalized_odds_diff": 0.03459919324011218,
+      "passes_80_percent_rule": true,
+      "status": "PASS OK"
+    }
+  },
+  "countries": {
+    "Benin": {
+      "gender": {
+        "attribute": "Gender",
+        "group_a": {
+          "name": "Male-Headed",
+          "n": 6231,
+          "tp": 1485,
+          "fp": 910,
+          "tn": 3441,
+          "fn": 395,
+          "tpr": 0.7898936170212766,
+          "fpr": 0.20914732245460813,
+          "selection_rate": 0.38436848017974645,
+          "precision": 0.6200417536534447
+        },
+        "group_b": {
+          "name": "Female-Headed",
+          "n": 1801,
+          "tp": 325,
+          "fp": 161,
+          "tn": 1181,
+          "fn": 134,
+          "tpr": 0.7080610021786492,
+          "fpr": 0.11997019374068554,
+          "selection_rate": 0.2698500832870627,
+          "precision": 0.668724279835391
+        },
+        "disparate_impact_ratio": 0.7020609056207464,
+        "demographic_parity_diff": 0.11451839689268373,
+        "equal_opportunity_diff": 0.08183261484262738,
+        "equalized_odds_diff": 0.08917712871392258,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "geography": {
+        "attribute": "Geography",
+        "group_a": {
+          "name": "Urban",
+          "n": 3952,
+          "tp": 687,
+          "fp": 339,
+          "tn": 2640,
+          "fn": 286,
+          "tpr": 0.7060637204522097,
+          "fpr": 0.11379657603222558,
+          "selection_rate": 0.25961538461538464,
+          "precision": 0.6695906432748538
+        },
+        "group_b": {
+          "name": "Rural",
+          "n": 4080,
+          "tp": 1123,
+          "fp": 732,
+          "tn": 1982,
+          "fn": 243,
+          "tpr": 0.822108345534407,
+          "fpr": 0.2697126013264554,
+          "selection_rate": 0.45465686274509803,
+          "precision": 0.6053908355795148
+        },
+        "disparate_impact_ratio": 0.5710138917686088,
+        "demographic_parity_diff": 0.1950414781297134,
+        "equal_opportunity_diff": 0.11604462508219737,
+        "equalized_odds_diff": 0.15591602529422982,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "age": {
+        "attribute": "Age",
+        "group_a": {
+          "name": "Working-Age (<60)",
+          "n": 6557,
+          "tp": 1542,
+          "fp": 900,
+          "tn": 3692,
+          "fn": 423,
+          "tpr": 0.7847328244274809,
+          "fpr": 0.19599303135888502,
+          "selection_rate": 0.37242641451883485,
+          "precision": 0.6314496314496314
+        },
+        "group_b": {
+          "name": "Elderly (>=60)",
+          "n": 1475,
+          "tp": 268,
+          "fp": 171,
+          "tn": 930,
+          "fn": 106,
+          "tpr": 0.7165775401069518,
+          "fpr": 0.1553133514986376,
+          "selection_rate": 0.2976271186440678,
+          "precision": 0.6104783599088838
+        },
+        "disparate_impact_ratio": 0.7991568455975236,
+        "demographic_parity_diff": 0.07479929587476702,
+        "equal_opportunity_diff": 0.06815528432052909,
+        "equalized_odds_diff": 0.06815528432052909,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "overall_passed": false
+    },
+    "Burkina Faso": {
+      "gender": {
+        "attribute": "Gender",
+        "group_a": {
+          "name": "Male-Headed",
+          "n": 2714,
+          "tp": 713,
+          "fp": 397,
+          "tn": 1476,
+          "fn": 128,
+          "tpr": 0.8478002378121284,
+          "fpr": 0.21195942338494395,
+          "selection_rate": 0.4089904200442152,
+          "precision": 0.6423423423423423
+        },
+        "group_b": {
+          "name": "Female-Headed",
+          "n": 513,
+          "tp": 101,
+          "fp": 52,
+          "tn": 330,
+          "fn": 30,
+          "tpr": 0.7709923664122137,
+          "fpr": 0.13612565445026178,
+          "selection_rate": 0.2982456140350877,
+          "precision": 0.6601307189542484
+        },
+        "disparate_impact_ratio": 0.7292239608029081,
+        "demographic_parity_diff": 0.1107448060091275,
+        "equal_opportunity_diff": 0.07680787139991474,
+        "equalized_odds_diff": 0.07680787139991474,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "geography": {
+        "attribute": "Geography",
+        "group_a": {
+          "name": "Urban",
+          "n": 1467,
+          "tp": 131,
+          "fp": 105,
+          "tn": 1180,
+          "fn": 51,
+          "tpr": 0.7197802197802198,
+          "fpr": 0.08171206225680934,
+          "selection_rate": 0.1608725289706885,
+          "precision": 0.5550847457627118
+        },
+        "group_b": {
+          "name": "Rural",
+          "n": 1760,
+          "tp": 683,
+          "fp": 344,
+          "tn": 626,
+          "fn": 107,
+          "tpr": 0.8645569620253165,
+          "fpr": 0.354639175257732,
+          "selection_rate": 0.5835227272727272,
+          "precision": 0.6650438169425511
+        },
+        "disparate_impact_ratio": 0.27569196785629185,
+        "demographic_parity_diff": 0.42265019830203876,
+        "equal_opportunity_diff": 0.14477674224509673,
+        "equalized_odds_diff": 0.27292711300092265,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "age": {
+        "attribute": "Age",
+        "group_a": {
+          "name": "Working-Age (<60)",
+          "n": 2414,
+          "tp": 612,
+          "fp": 345,
+          "tn": 1340,
+          "fn": 117,
+          "tpr": 0.8395061728395061,
+          "fpr": 0.20474777448071216,
+          "selection_rate": 0.3964374482187241,
+          "precision": 0.6394984326018809
+        },
+        "group_b": {
+          "name": "Elderly (>=60)",
+          "n": 813,
+          "tp": 202,
+          "fp": 104,
+          "tn": 466,
+          "fn": 41,
+          "tpr": 0.831275720164609,
+          "fpr": 0.1824561403508772,
+          "selection_rate": 0.3763837638376384,
+          "precision": 0.6601307189542484
+        },
+        "disparate_impact_ratio": 0.9494152621777001,
+        "demographic_parity_diff": 0.020053684381085735,
+        "equal_opportunity_diff": 0.008230452674897082,
+        "equalized_odds_diff": 0.022291634129834953,
+        "passes_80_percent_rule": true,
+        "status": "PASS OK"
+      },
+      "overall_passed": false
+    },
+    "Côte d'Ivoire": {
+      "gender": {
+        "attribute": "Gender",
+        "group_a": {
+          "name": "Male-Headed",
+          "n": 10689,
+          "tp": 3386,
+          "fp": 1614,
+          "tn": 5162,
+          "fn": 527,
+          "tpr": 0.8653207257858421,
+          "fpr": 0.23819362455726092,
+          "selection_rate": 0.46777060529516323,
+          "precision": 0.6772
+        },
+        "group_b": {
+          "name": "Female-Headed",
+          "n": 2276,
+          "tp": 578,
+          "fp": 263,
+          "tn": 1297,
+          "fn": 138,
+          "tpr": 0.8072625698324022,
+          "fpr": 0.1685897435897436,
+          "selection_rate": 0.3695079086115993,
+          "precision": 0.6872770511296076
+        },
+        "disparate_impact_ratio": 0.789934007029877,
+        "demographic_parity_diff": 0.09826269668356391,
+        "equal_opportunity_diff": 0.05805815595343988,
+        "equalized_odds_diff": 0.06960388096751732,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "geography": {
+        "attribute": "Geography",
+        "group_a": {
+          "name": "Urban",
+          "n": 5243,
+          "tp": 880,
+          "fp": 508,
+          "tn": 3593,
+          "fn": 262,
+          "tpr": 0.7705779334500875,
+          "fpr": 0.12387222628627165,
+          "selection_rate": 0.2647339309555598,
+          "precision": 0.6340057636887608
+        },
+        "group_b": {
+          "name": "Rural",
+          "n": 7722,
+          "tp": 3084,
+          "fp": 1369,
+          "tn": 2866,
+          "fn": 403,
+          "tpr": 0.8844278749641525,
+          "fpr": 0.32325855962219596,
+          "selection_rate": 0.5766640766640767,
+          "precision": 0.6925668088928812
+        },
+        "disparate_impact_ratio": 0.45907824272149844,
+        "demographic_parity_diff": 0.3119301457085169,
+        "equal_opportunity_diff": 0.11384994151406502,
+        "equalized_odds_diff": 0.19938633333592432,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "age": {
+        "attribute": "Age",
+        "group_a": {
+          "name": "Working-Age (<60)",
+          "n": 10711,
+          "tp": 3315,
+          "fp": 1592,
+          "tn": 5280,
+          "fn": 524,
+          "tpr": 0.8635061213857775,
+          "fpr": 0.23166472642607683,
+          "selection_rate": 0.4581271589954253,
+          "precision": 0.675565518646831
+        },
+        "group_b": {
+          "name": "Elderly (>=60)",
+          "n": 2254,
+          "tp": 649,
+          "fp": 285,
+          "tn": 1179,
+          "fn": 141,
+          "tpr": 0.8215189873417722,
+          "fpr": 0.19467213114754098,
+          "selection_rate": 0.4143744454303461,
+          "precision": 0.6948608137044968
+        },
+        "disparate_impact_ratio": 0.9044965732635901,
+        "demographic_parity_diff": 0.043752713565079204,
+        "equal_opportunity_diff": 0.041987134044005336,
+        "equalized_odds_diff": 0.041987134044005336,
+        "passes_80_percent_rule": true,
+        "status": "PASS OK"
+      },
+      "overall_passed": false
+    },
+    "Guinea-Bissau": {
+      "gender": {
+        "attribute": "Gender",
+        "group_a": {
+          "name": "Male-Headed",
+          "n": 4161,
+          "tp": 1719,
+          "fp": 711,
+          "tn": 1573,
+          "fn": 158,
+          "tpr": 0.9158231220031966,
+          "fpr": 0.31129597197898423,
+          "selection_rate": 0.5839942321557318,
+          "precision": 0.7074074074074074
+        },
+        "group_b": {
+          "name": "Female-Headed",
+          "n": 1190,
+          "tp": 301,
+          "fp": 167,
+          "tn": 670,
+          "fn": 52,
+          "tpr": 0.8526912181303116,
+          "fpr": 0.19952210274790919,
+          "selection_rate": 0.39327731092436974,
+          "precision": 0.6431623931623932
+        },
+        "disparate_impact_ratio": 0.6734267040149393,
+        "demographic_parity_diff": 0.19071692123136202,
+        "equal_opportunity_diff": 0.06313190387288503,
+        "equalized_odds_diff": 0.11177386923107505,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "geography": {
+        "attribute": "Geography",
+        "group_a": {
+          "name": "Urban",
+          "n": 1992,
+          "tp": 352,
+          "fp": 188,
+          "tn": 1357,
+          "fn": 95,
+          "tpr": 0.7874720357941835,
+          "fpr": 0.12168284789644013,
+          "selection_rate": 0.2710843373493976,
+          "precision": 0.6518518518518519
+        },
+        "group_b": {
+          "name": "Rural",
+          "n": 3359,
+          "tp": 1668,
+          "fp": 690,
+          "tn": 886,
+          "fn": 115,
+          "tpr": 0.9355019629837352,
+          "fpr": 0.43781725888324874,
+          "selection_rate": 0.7019946412622804,
+          "precision": 0.7073791348600509
+        },
+        "disparate_impact_ratio": 0.38616297250068976,
+        "demographic_parity_diff": 0.4309103039128828,
+        "equal_opportunity_diff": 0.14802992718955177,
+        "equalized_odds_diff": 0.3161344109868086,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "age": {
+        "attribute": "Age",
+        "group_a": {
+          "name": "Working-Age (<60)",
+          "n": 4024,
+          "tp": 1512,
+          "fp": 657,
+          "tn": 1698,
+          "fn": 157,
+          "tpr": 0.9059316956261234,
+          "fpr": 0.2789808917197452,
+          "selection_rate": 0.5390159045725647,
+          "precision": 0.6970954356846473
+        },
+        "group_b": {
+          "name": "Elderly (>=60)",
+          "n": 1327,
+          "tp": 508,
+          "fp": 221,
+          "tn": 545,
+          "fn": 53,
+          "tpr": 0.9055258467023173,
+          "fpr": 0.2885117493472585,
+          "selection_rate": 0.549359457422758,
+          "precision": 0.6968449931412894
+        },
+        "disparate_impact_ratio": 0.9811716123014999,
+        "demographic_parity_diff": 0.010343552850193394,
+        "equal_opportunity_diff": 0.00040584892380612914,
+        "equalized_odds_diff": 0.009530857627513267,
+        "passes_80_percent_rule": true,
+        "status": "PASS OK"
+      },
+      "overall_passed": false
+    },
+    "Mali": {
+      "gender": {
+        "attribute": "Gender",
+        "group_a": {
+          "name": "Male-Headed",
+          "n": 5438,
+          "tp": 1478,
+          "fp": 734,
+          "tn": 2964,
+          "fn": 262,
+          "tpr": 0.8494252873563218,
+          "fpr": 0.19848566792861005,
+          "selection_rate": 0.4067671938212578,
+          "precision": 0.6681735985533453
+        },
+        "group_b": {
+          "name": "Female-Headed",
+          "n": 705,
+          "tp": 101,
+          "fp": 58,
+          "tn": 497,
+          "fn": 49,
+          "tpr": 0.6733333333333333,
+          "fpr": 0.1045045045045045,
+          "selection_rate": 0.225531914893617,
+          "precision": 0.6352201257861635
+        },
+        "disparate_impact_ratio": 0.554449617175176,
+        "demographic_parity_diff": 0.1812352789276408,
+        "equal_opportunity_diff": 0.1760919540229885,
+        "equalized_odds_diff": 0.1760919540229885,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "geography": {
+        "attribute": "Geography",
+        "group_a": {
+          "name": "Urban",
+          "n": 2732,
+          "tp": 338,
+          "fp": 152,
+          "tn": 2078,
+          "fn": 164,
+          "tpr": 0.6733067729083665,
+          "fpr": 0.06816143497757847,
+          "selection_rate": 0.17935578330893118,
+          "precision": 0.689795918367347
+        },
+        "group_b": {
+          "name": "Rural",
+          "n": 3411,
+          "tp": 1241,
+          "fp": 640,
+          "tn": 1383,
+          "fn": 147,
+          "tpr": 0.8940922190201729,
+          "fpr": 0.31636183885318836,
+          "selection_rate": 0.5514511873350924,
+          "precision": 0.6597554492291334
+        },
+        "disparate_impact_ratio": 0.32524326255543023,
+        "demographic_parity_diff": 0.37209540402616115,
+        "equal_opportunity_diff": 0.2207854461118064,
+        "equalized_odds_diff": 0.24820040387560988,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "age": {
+        "attribute": "Age",
+        "group_a": {
+          "name": "Working-Age (<60)",
+          "n": 4503,
+          "tp": 1124,
+          "fp": 579,
+          "tn": 2565,
+          "fn": 235,
+          "tpr": 0.8270787343635025,
+          "fpr": 0.18416030534351144,
+          "selection_rate": 0.37819231623362204,
+          "precision": 0.6600117439812097
+        },
+        "group_b": {
+          "name": "Elderly (>=60)",
+          "n": 1640,
+          "tp": 455,
+          "fp": 213,
+          "tn": 896,
+          "fn": 76,
+          "tpr": 0.8568738229755178,
+          "fpr": 0.1920649233543733,
+          "selection_rate": 0.4073170731707317,
+          "precision": 0.6811377245508982
+        },
+        "disparate_impact_ratio": 0.9284961057232638,
+        "demographic_parity_diff": 0.02912475693710964,
+        "equal_opportunity_diff": 0.029795088612015297,
+        "equalized_odds_diff": 0.029795088612015297,
+        "passes_80_percent_rule": true,
+        "status": "PASS OK"
+      },
+      "overall_passed": false
+    },
+    "Niger": {
+      "gender": {
+        "attribute": "Gender",
+        "group_a": {
+          "name": "Male-Headed",
+          "n": 5268,
+          "tp": 1181,
+          "fp": 736,
+          "tn": 3065,
+          "fn": 286,
+          "tpr": 0.8050443081117927,
+          "fpr": 0.19363325440673507,
+          "selection_rate": 0.36389521640091116,
+          "precision": 0.6160667709963484
+        },
+        "group_b": {
+          "name": "Female-Headed",
+          "n": 1354,
+          "tp": 232,
+          "fp": 139,
+          "tn": 908,
+          "fn": 75,
+          "tpr": 0.755700325732899,
+          "fpr": 0.13276026743075453,
+          "selection_rate": 0.2740029542097489,
+          "precision": 0.6253369272237197
+        },
+        "disparate_impact_ratio": 0.7529721245576199,
+        "demographic_parity_diff": 0.08989226219116225,
+        "equal_opportunity_diff": 0.0493439823788937,
+        "equalized_odds_diff": 0.060872986975980536,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "geography": {
+        "attribute": "Geography",
+        "group_a": {
+          "name": "Urban",
+          "n": 2511,
+          "tp": 182,
+          "fp": 125,
+          "tn": 2090,
+          "fn": 114,
+          "tpr": 0.6148648648648649,
+          "fpr": 0.056433408577878104,
+          "selection_rate": 0.12226204699322979,
+          "precision": 0.5928338762214984
+        },
+        "group_b": {
+          "name": "Rural",
+          "n": 4111,
+          "tp": 1231,
+          "fp": 750,
+          "tn": 1883,
+          "fn": 247,
+          "tpr": 0.8328822733423545,
+          "fpr": 0.284846183061147,
+          "selection_rate": 0.48187788859158354,
+          "precision": 0.6214033316506815
+        },
+        "disparate_impact_ratio": 0.25371997737969093,
+        "demographic_parity_diff": 0.35961584159835375,
+        "equal_opportunity_diff": 0.21801740847748963,
+        "equalized_odds_diff": 0.2284127744832689,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "age": {
+        "attribute": "Age",
+        "group_a": {
+          "name": "Working-Age (<60)",
+          "n": 5170,
+          "tp": 1211,
+          "fp": 738,
+          "tn": 2943,
+          "fn": 278,
+          "tpr": 0.8132975151108126,
+          "fpr": 0.20048899755501223,
+          "selection_rate": 0.3769825918762089,
+          "precision": 0.6213442791174961
+        },
+        "group_b": {
+          "name": "Elderly (>=60)",
+          "n": 1452,
+          "tp": 202,
+          "fp": 137,
+          "tn": 1030,
+          "fn": 83,
+          "tpr": 0.7087719298245614,
+          "fpr": 0.11739502999143102,
+          "selection_rate": 0.2334710743801653,
+          "precision": 0.5958702064896755
+        },
+        "disparate_impact_ratio": 0.6193152665702691,
+        "demographic_parity_diff": 0.14351151749604363,
+        "equal_opportunity_diff": 0.10452558528625122,
+        "equalized_odds_diff": 0.10452558528625122,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "overall_passed": false
+    },
+    "Senegal": {
+      "gender": {
+        "attribute": "Gender",
+        "group_a": {
+          "name": "Male-Headed",
+          "n": 5095,
+          "tp": 1694,
+          "fp": 616,
+          "tn": 2585,
+          "fn": 200,
+          "tpr": 0.8944033790918691,
+          "fpr": 0.19243986254295534,
+          "selection_rate": 0.4533856722276742,
+          "precision": 0.7333333333333333
+        },
+        "group_b": {
+          "name": "Female-Headed",
+          "n": 2025,
+          "tp": 383,
+          "fp": 156,
+          "tn": 1405,
+          "fn": 81,
+          "tpr": 0.8254310344827587,
+          "fpr": 0.09993593850096093,
+          "selection_rate": 0.2661728395061728,
+          "precision": 0.7105751391465677
+        },
+        "disparate_impact_ratio": 0.5870781893004114,
+        "demographic_parity_diff": 0.18721283272150135,
+        "equal_opportunity_diff": 0.06897234460911039,
+        "equalized_odds_diff": 0.09250392404199441,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "geography": {
+        "attribute": "Geography",
+        "group_a": {
+          "name": "Urban",
+          "n": 3922,
+          "tp": 667,
+          "fp": 245,
+          "tn": 2831,
+          "fn": 179,
+          "tpr": 0.7884160756501182,
+          "fpr": 0.07964889466840051,
+          "selection_rate": 0.2325344212136665,
+          "precision": 0.731359649122807
+        },
+        "group_b": {
+          "name": "Rural",
+          "n": 3198,
+          "tp": 1410,
+          "fp": 527,
+          "tn": 1159,
+          "fn": 102,
+          "tpr": 0.9325396825396826,
+          "fpr": 0.3125741399762752,
+          "selection_rate": 0.6056910569105691,
+          "precision": 0.7279297883324729
+        },
+        "disparate_impact_ratio": 0.3839158900574628,
+        "demographic_parity_diff": 0.3731566356969026,
+        "equal_opportunity_diff": 0.14412360688956438,
+        "equalized_odds_diff": 0.23292524530787467,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "age": {
+        "attribute": "Age",
+        "group_a": {
+          "name": "Working-Age (<60)",
+          "n": 4592,
+          "tp": 1428,
+          "fp": 503,
+          "tn": 2481,
+          "fn": 180,
+          "tpr": 0.8880597014925373,
+          "fpr": 0.1685656836461126,
+          "selection_rate": 0.42051393728222997,
+          "precision": 0.739513205592957
+        },
+        "group_b": {
+          "name": "Elderly (>=60)",
+          "n": 2528,
+          "tp": 649,
+          "fp": 269,
+          "tn": 1509,
+          "fn": 101,
+          "tpr": 0.8653333333333333,
+          "fpr": 0.1512935883014623,
+          "selection_rate": 0.36313291139240506,
+          "precision": 0.7069716775599129
+        },
+        "disparate_impact_ratio": 0.8635454837462061,
+        "demographic_parity_diff": 0.05738102588982491,
+        "equal_opportunity_diff": 0.022726368159204036,
+        "equalized_odds_diff": 0.022726368159204036,
+        "passes_80_percent_rule": true,
+        "status": "PASS OK"
+      },
+      "overall_passed": false
+    },
+    "Togo": {
+      "gender": {
+        "attribute": "Gender",
+        "group_a": {
+          "name": "Male-Headed",
+          "n": 4692,
+          "tp": 1733,
+          "fp": 695,
+          "tn": 2076,
+          "fn": 188,
+          "tpr": 0.9021343050494534,
+          "fpr": 0.2508119812342115,
+          "selection_rate": 0.5174765558397272,
+          "precision": 0.7137561779242174
+        },
+        "group_b": {
+          "name": "Female-Headed",
+          "n": 1770,
+          "tp": 520,
+          "fp": 240,
+          "tn": 927,
+          "fn": 83,
+          "tpr": 0.8623548922056384,
+          "fpr": 0.20565552699228792,
+          "selection_rate": 0.4293785310734463,
+          "precision": 0.6842105263157895
+        },
+        "disparate_impact_ratio": 0.8297545584005808,
+        "demographic_parity_diff": 0.08809802476628087,
+        "equal_opportunity_diff": 0.03977941284381492,
+        "equalized_odds_diff": 0.04515645424192358,
+        "passes_80_percent_rule": true,
+        "status": "PASS OK"
+      },
+      "geography": {
+        "attribute": "Geography",
+        "group_a": {
+          "name": "Urban",
+          "n": 2459,
+          "tp": 348,
+          "fp": 189,
+          "tn": 1778,
+          "fn": 144,
+          "tpr": 0.7073170731707317,
+          "fpr": 0.09608540925266904,
+          "selection_rate": 0.2183814558763725,
+          "precision": 0.6480446927374302
+        },
+        "group_b": {
+          "name": "Rural",
+          "n": 4003,
+          "tp": 1905,
+          "fp": 746,
+          "tn": 1225,
+          "fn": 127,
+          "tpr": 0.9375,
+          "fpr": 0.3784880771182141,
+          "selection_rate": 0.6622533100174869,
+          "precision": 0.7185967559411542
+        },
+        "disparate_impact_ratio": 0.3297551746032136,
+        "demographic_parity_diff": 0.4438718541411144,
+        "equal_opportunity_diff": 0.23018292682926833,
+        "equalized_odds_diff": 0.282402667865545,
+        "passes_80_percent_rule": false,
+        "status": "FAIRNESS_ALERT"
+      },
+      "age": {
+        "attribute": "Age",
+        "group_a": {
+          "name": "Working-Age (<60)",
+          "n": 5088,
+          "tp": 1806,
+          "fp": 754,
+          "tn": 2316,
+          "fn": 212,
+          "tpr": 0.8949454905847374,
+          "fpr": 0.24560260586319219,
+          "selection_rate": 0.5031446540880503,
+          "precision": 0.70546875
+        },
+        "group_b": {
+          "name": "Elderly (>=60)",
+          "n": 1374,
+          "tp": 447,
+          "fp": 181,
+          "tn": 687,
+          "fn": 59,
+          "tpr": 0.883399209486166,
+          "fpr": 0.20852534562211983,
+          "selection_rate": 0.4570596797671033,
+          "precision": 0.7117834394904459
+        },
+        "disparate_impact_ratio": 0.9084061135371179,
+        "demographic_parity_diff": 0.04608497432094699,
+        "equal_opportunity_diff": 0.011546281098571365,
+        "equalized_odds_diff": 0.03707726024107236,
+        "passes_80_percent_rule": true,
+        "status": "PASS OK"
+      },
+      "overall_passed": true
+    }
+  },
+  "passed": false
+}

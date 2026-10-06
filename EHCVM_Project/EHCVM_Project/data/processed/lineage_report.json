@@ -1,0 +1,214 @@
+{
+  "generated_at": "2026-09-20T18:19:27.068670",
+  "countries": {
+    "Benin": [
+      {
+        "table": "menage",
+        "file": "data\\Benin\\ehcvm_menage_ben2021.csv",
+        "rows": 8032,
+        "columns": 38,
+        "size_bytes": 779698,
+        "loaded_at": "2026-09-20T18:19:24.412462"
+      },
+      {
+        "table": "welfare",
+        "file": "data\\Benin\\ehcvm_welfare_ben2021.csv",
+        "rows": 8032,
+        "columns": 46,
+        "size_bytes": 2667256,
+        "loaded_at": "2026-09-20T18:19:24.438462"
+      },
+      {
+        "table": "individu",
+        "file": "data\\Benin\\ehcvm_individu_ben2021.csv",
+        "rows": 42660,
+        "columns": 59,
+        "size_bytes": 7148539,
+        "loaded_at": "2026-09-20T18:19:24.532997"
+      }
+    ],
+    "Burkina Faso": [
+      {
+        "table": "menage",
+        "file": "data\\Burkina Faso\\ehcvm_menage_bfa2021.csv",
+        "rows": 3227,
+        "columns": 40,
+        "size_bytes": 401627,
+        "loaded_at": "2026-09-20T18:19:24.540001"
+      },
+      {
+        "table": "welfare",
+        "file": "data\\Burkina Faso\\ehcvm_welfare_2b_bfa2021.csv",
+        "rows": 3227,
+        "columns": 42,
+        "size_bytes": 782782,
+        "loaded_at": "2026-09-20T18:19:24.549000"
+      },
+      {
+        "table": "individu",
+        "file": "data\\Burkina Faso\\ehcvm_individu_bfa2021.csv",
+        "rows": 22362,
+        "columns": 58,
+        "size_bytes": 3734525,
+        "loaded_at": "2026-09-20T18:19:24.605897"
+      }
+    ],
+    "C\u00f4te d'Ivoire": [
+      {
+        "table": "menage",
+        "file": "data\\C\u00f4te d'Ivoire\\ehcvm_menage_civ2021.csv",
+        "rows": 13863,
+        "columns": 38,
+        "size_bytes": 2058003,
+        "loaded_at": "2026-09-20T18:19:24.633897"
+      },
+      {
+        "table": "welfare",
+        "file": "data\\C\u00f4te d'Ivoire\\ehcvm_welfare_civ2021.csv",
+        "rows": 12965,
+        "columns": 44,
+        "size_bytes": 3865885,
+        "loaded_at": "2026-09-20T18:19:24.674901"
+      },
+      {
+        "table": "individu",
+        "file": "data\\C\u00f4te d'Ivoire\\ehcvm_individu_civ2021.csv",
+        "rows": 64491,
+        "columns": 57,
+        "size_bytes": 9243109,
+        "loaded_at": "2026-09-20T18:19:24.808509"
+      }
+    ],
+    "Guinea-Bissau": [
+      {
+        "table": "menage",
+        "file": "data\\Guinea-Bissau\\ehcvm_menage_gnb2021.csv",
+        "rows": 5351,
+        "columns": 38,
+        "size_bytes": 572856,
+        "loaded_at": "2026-09-20T18:19:24.817957"
+      },
+      {
+        "table": "welfare",
+        "file": "data\\Guinea-Bissau\\ehcvm_welfare_gnb2021.csv",
+        "rows": 5351,
+        "columns": 43,
+        "size_bytes": 1580032,
+        "loaded_at": "2026-09-20T18:19:24.836477"
+      },
+      {
+        "table": "individu",
+        "file": "data\\Guinea-Bissau\\ehcvm_individu_gnb2021.csv",
+        "rows": 41160,
+        "columns": 55,
+        "size_bytes": 6017395,
+        "loaded_at": "2026-09-20T18:19:24.929100"
+      }
+    ],
+    "Mali": [
+      {
+        "table": "menage",
+        "file": "data\\Mali\\ehcvm_menage_mli2021.csv",
+        "rows": 6143,
+        "columns": 41,
+        "size_bytes": 654121,
+        "loaded_at": "2026-09-20T18:19:24.939381"
+      },
+      {
+        "table": "welfare",
+        "file": "data\\Mali\\ehcvm_welfare_mli2021.csv",
+        "rows": 6143,
+        "columns": 44,
+        "size_bytes": 1873034,
+        "loaded_at": "2026-09-20T18:19:24.959517"
+      },
+      {
+        "table": "individu",
+        "file": "data\\Mali\\ehcvm_individu_mli2021.csv",
+        "rows": 43472,
+        "columns": 59,
+        "size_bytes": 6831140,
+        "loaded_at": "2026-09-20T18:19:25.055605"
+      }
+    ],
+    "Niger": [
+      {
+        "table": "menage",
+        "file": "data\\Niger\\ehcvm_menage_ner2021.csv",
+        "rows": 6622,
+        "columns": 38,
+        "size_bytes": 677214,
+        "loaded_at": "2026-09-20T18:19:25.066714"
+      },
+      {
+        "table": "welfare",
+        "file": "data\\Niger\\ehcvm_welfare_ner2021.csv",
+        "rows": 6622,
+        "columns": 44,
+        "size_bytes": 1925289,
+        "loaded_at": "2026-09-20T18:19:25.086354"
+      },
+      {
+        "table": "individu",
+        "file": "data\\Niger\\ehcvm_individu_ner2021.csv",
+        "rows": 38753,
+        "columns": 56,
+        "size_bytes": 5941000,
+        "loaded_at": "2026-09-20T18:19:25.170403"
+      }
+    ],
+    "Senegal": [
+      {
+        "table": "menage",
+        "file": "data\\Senegal\\ehcvm_menage_sen2021.csv",
+        "rows": 7120,
+        "columns": 38,
+        "size_bytes": 667632,
+        "loaded_at": "2026-09-20T18:19:25.182483"
+      },
+      {
+        "table": "welfare",
+        "file": "data\\Senegal\\ehcvm_welfare_sen2021.csv",
+        "rows": 7120,
+        "columns": 47,
+        "size_bytes": 2458590,
+        "loaded_at": "2026-09-20T18:19:25.206024"
+      },
+      {
+        "table": "individu",
+        "file": "data\\Senegal\\ehcvm_individu_sen2021.csv",
+        "rows": 63530,
+        "columns": 56,
+        "size_bytes": 10251296,
+        "loaded_at": "2026-09-20T18:19:25.351684"
+      }
+    ],
+    "Togo": [
+      {
+        "table": "menage",
+        "file": "data\\Togo\\ehcvm_menage_tgo2021.csv",
+        "rows": 6462,
+        "columns": 43,
+        "size_bytes": 733638,
+        "loaded_at": "2026-09-20T18:19:25.365689"
+      },
+      {
+        "table": "welfare",
+        "file": "data\\Togo\\ehcvm_welfare_tgo2021.csv",
+        "rows": 6462,
+        "columns": 45,
+        "size_bytes": 2010148,
+        "loaded_at": "2026-09-20T18:19:25.386197"
+      },
+      {
+        "table": "individu",
+        "file": "data\\Togo\\ehcvm_individu_tgo2021.csv",
+        "rows": 28815,
+        "columns": 56,
+        "size_bytes": 4257770,
+        "loaded_at": "2026-09-20T18:19:25.454219"
+      }
+    ]
+  },
+  "total_files_ingested": 24
+}

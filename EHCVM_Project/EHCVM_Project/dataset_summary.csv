@@ -1,0 +1,41 @@
+Country,File,Rows,Columns,Size_MB
+Benin,ehcvm_conso_ben2021.dta,531032,14,18.76
+Benin,ehcvm_individu_ben2021.dta,42660,59,4.0
+Benin,ehcvm_menage_ben2021.dta,8032,38,0.46
+Benin,ehcvm_ponderations_ben2021.dta,8032,7,0.14
+Benin,ehcvm_welfare_ben2021.dta,8032,46,1.26
+Burkina Faso,ehcvm_conso_bfa2021.dta,210391,14,8.26
+Burkina Faso,ehcvm_individu_bfa2021.dta,22362,58,2.31
+Burkina Faso,ehcvm_menage_bfa2021.dta,3227,40,0.24
+Burkina Faso,ehcvm_panel_ponderations_bfa2021.dta,550,3,0.01
+Burkina Faso,ehcvm_welfare_2b_bfa2021.dta,3227,42,0.37
+Côte d'Ivoire,ehcvm_conso_civ2021.dta,787410,14,24.05
+Côte d'Ivoire,ehcvm_individu_civ2021.dta,64491,57,5.22
+Côte d'Ivoire,ehcvm_menage_civ2021.dta,13863,38,0.74
+Côte d'Ivoire,ehcvm_ponderations_civ2021.dta,12965,15,0.8
+Côte d'Ivoire,ehcvm_welfare_civ2021.dta,12965,44,1.74
+Guinea-Bissau,ehcvm_conso_gnb2021.dta,345533,14,12.88
+Guinea-Bissau,ehcvm_individu_gnb2021.dta,41160,55,3.34
+Guinea-Bissau,ehcvm_menage_gnb2021.dta,5351,38,0.34
+Guinea-Bissau,ehcvm_ponderations_gnb2021.dta,5351,9,0.09
+Guinea-Bissau,ehcvm_welfare_gnb2021.dta,5351,43,0.75
+Mali,ehcvm_conso_mli2021.dta,393480,15,13.91
+Mali,ehcvm_individu_mli2021.dta,43472,59,5.02
+Mali,ehcvm_menage_mli2021.dta,6143,41,0.37
+Mali,ehcvm_ponderations_mli2021.dta,6143,4,0.07
+Mali,ehcvm_welfare_mli2021.dta,6143,44,0.86
+Niger,ehcvm_conso_ner2021.dta,364297,14,11.14
+Niger,ehcvm_individu_ner2021.dta,38753,56,3.12
+Niger,ehcvm_menage_ner2021.dta,6622,38,0.37
+Niger,ehcvm_ponderations_ner2021.dta,6622,8,0.13
+Niger,ehcvm_welfare_ner2021.dta,6622,44,0.87
+Senegal,ehcvm_conso_sen2021.dta,545801,14,18.77
+Senegal,ehcvm_individu_sen2021.dta,63530,56,7.01
+Senegal,ehcvm_menage_sen2021.dta,7120,38,0.4
+Senegal,ehcvm_ponderations_sen2021.dta,7120,5,0.14
+Senegal,ehcvm_welfare_sen2021.dta,7120,47,1.17
+Togo,ehcvm_conso_tgo2021.dta,369348,14,12.7
+Togo,ehcvm_individu_tgo2021.dta,28815,56,2.41
+Togo,ehcvm_menage_tgo2021.dta,6462,43,0.4
+Togo,ehcvm_ponderations_tgo2021.dta,6462,8,0.11
+Togo,ehcvm_welfare_tgo2021.dta,6462,45,0.92

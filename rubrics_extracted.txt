@@ -1,0 +1,926 @@
+=== PAGE 1 ===
+Page 1 of 14 
+ 
+ 
+Capstone Project Guidelines and Evaluation Rubrics 
+The Capstone Project is a culminating assignment undertaken by students in the final year of the programme, allowing 
+them to apply the knowledge and skills gained over previous years of study. Students are expected to design, develop, 
+and evaluate solutions to complex engineering problems using appropriate technology, tools, and engineering practice. 
+1. Programme Outcomes Addressed 
+● 
+Think critically and solve challenging, open-ended problems by designing innovative solutions using acquired 
+technical expertise. 
+● 
+Apply engineering knowledge to real-world problems through innovative project development. 
+● 
+Design and implement systems, components, or prototypes using modern tools, techniques, and 
+interdisciplinary skills. 
+● 
+Demonstrate effective teamwork, leadership, and project management abilities. 
+● 
+Communicate technical information clearly and professionally through documentation and presentations. 
+● 
+Adhere to professional and ethical standards, giving due consideration to societal, environmental, and 
+sustainability aspects. 
+ 
+ 
+2. Procedure and Roles 
+1. Students are formed into batches of 3–5 members from the same specialization, working under the guidance of an 
+assigned project guide. 
+2. Each section/class is assigned a dedicated Section In-Charge, responsible for monitoring the progress of all projects 
+within that section. 
+3. Each department constitutes an Internal Review Panel comprising the Project Guide, a Mentor, and one or two 
+additional faculty members with relevant domain expertise. 
+4. The evaluation process comprises three internal reviews (Review 1, 2, and 3) followed by one Final End-Semester 
+External Review. Each internal review is assessed through three components: Continuous Evaluation, Guide Evaluation, 
+and a Panel/Project Review — described in detail in Section 3. 
+5. Continuous Evaluation is conducted through in-session presentations delivered by students during scheduled project 
+hours, at a minimum frequency of two presentations per month per batch. 
+Note: Faculty must upload marks to the LMS immediately after each session or review. Each batch is responsible for meeting its 
+project guide at least twice a week and ensuring the guide records evaluation marks in the LMS accordingly. Failure to comply with 
+these timelines may result in loss of continuous evaluation marks. 
+ 
+ 
+ 
+ 
+ 
+=== PAGE 2 ===
+Page 2 of 14 
+3. Assessment Structure and Weightage 
+The Capstone Project is evaluated out of 100 marks in total, split across the In-Semester (60 marks) and End-Semester 
+(40 marks) components as shown below. 
+Component 
+Review 1 
+Review 2 
+Review 3 
+Final External Review 
+Total 
+Continuous Evaluation 
+5 
+5 
+5 
+— 
+15 
+Guide Evaluation 
+5 
+5 
+5 
+included below* 
+15 
+Panel / Project Review 
+10 
+10 
+10 
+— 
+30 
+Final End-Semester External 
+Review 
+— 
+— 
+— 
+40 
+40 
+Total 
+20 
+20 
+20 
+40 
+100 
+*The Final External Review is scored out of 100 marks using its own rubric (Section 9), which itself includes a 20-mark Guide 
+Evaluation criterion. This 100-mark score is then scaled down to 40 marks — see the scaling formulas below. 
+ 
+3.1 How Component Scores Combine (Scaling Formulas) 
+Each review is assessed using rubrics scored out of 50 marks (Sections 6–8) or 100 marks (Section 9). These raw scores 
+are then scaled down to fit the weightage shown above, as follows: 
+Scaling formula:  Continuous Evaluation (per review) = (Average of all session scores in that review period ÷ 50) × 5 
+Scaling formula:  Guide Evaluation (per review) = (Guide's Individual Evaluation Sheet score ÷ 50) × 5 
+Scaling formula:  Panel / Project Review (per review) = (Panel Evaluation Rubric score ÷ 50) × 10 
+Scaling formula:  Final External Review contribution = (End-Semester External Review score ÷ 100) × 40 
+These formulas allow every rubric to be filled out on its natural 0–50 or 0–100 scale during the review, while still rolling up 
+consistently into the 100-mark overall total. 
+ 
+ 
+=== PAGE 3 ===
+Page 3 of 14 
+4. General Review Guidelines (Applicable to All Reviews) 
+Guide Presence is Mandatory: The internal project guide must be present at every review, as their evaluation and 
+professional insight are integral to the process. 
+Panel Constitution: Each review panel must include the Project Guide and one or more Subject Experts / Review 
+Committee Members. 
+Adherence to Schedule: Reviews must be conducted as per the department's academic calendar. Delayed reviews 
+without prior approval may result in deduction of marks. 
+Pre-Submission of Documents: Students must submit all required documents (e.g., abstract, review report, slides) at 
+least 2 days before the scheduled review date. 
+Attendance is Compulsory: All group members must be physically present. Absence without a valid, pre-approved 
+reason will affect marks and may result in failure of the capstone project for that member. 
+Time Allocation: Each group is allotted 10–15 minutes to present, followed by 5–10 minutes for questions and 
+discussion. 
+Academic Integrity: All content presented — including reports, code, and presentations — must be original. Plagiarism 
+or misrepresentation of work will result in severe academic consequences, up to and including disqualification from the 
+review. Departments are encouraged to run submitted reports through a plagiarism-detection tool prior to the review. 
+Post-Review Responsibilities 
+● 
+Feedback must be recorded and shared with students after every review. 
+● 
+Marks must be documented and signed by the guide and all panel members before submission. 
+● 
+If a project is found incomplete or not meeting academic standards, a re-review must be scheduled within a 
+timeframe set by the department. 
+4.1 Minimum Performance Requirements 
+To be filled in by the department in line with University academic regulations. 
+Minimum marks required in each individual 
+review 
+e.g., 40% of that review's total 
+ 
+ 
+Minimum aggregate marks required across all 
+reviews 
+e.g., 50% overall 
+ 
+ 
+Consequence of not meeting the minimum 
+e.g., mandatory re-review, or referral to the department committee 
+ 
+ 
+ 
+ 
+=== PAGE 4 ===
+Page 4 of 14 
+5. Continuous Evaluation 
+Continuous Evaluation is conducted batch-wise during scheduled project hours, at a minimum of two sessions per 
+month per batch. Each session is scored using the rubric below; the average of all session scores within a review period 
+is scaled to contribute 5 marks to that review (see Section 3.1). 
+S.No Criterion 
+Max 
+Marks 
+Marks Awarded 
+Remarks 
+1 
+Understanding of Project 
+Full marks: student can clearly explain project goals, 
+current status, and their own individual contribution. 
+10 
+ 
+ 
+2 
+Quality of Presentation 
+Full marks: presentation is well-structured, visually clear, 
+and appropriately paced. 
+10 
+ 
+ 
+3 
+Communication Skills 
+Full marks: ideas are conveyed clearly and confidently; 
+questions are answered well. 
+10 
+ 
+ 
+4 
+Teamwork & Collaboration 
+Full marks: active, constructive participation and 
+coordination with team members is evident. 
+10 
+ 
+ 
+5 
+Technical Progress 
+Full marks: demonstrable, on-track progress has been made 
+since the previous session. 
+10 
+ 
+ 
+Total Marks 
+50 
+ 
+ 
+Evaluations may be recorded per student or per team, with an optional remarks column used to note individual differences. Maintain 
+a running project evaluation sheet for transparency and tracking. 
+ 
+ 
+=== PAGE 5 ===
+Page 5 of 14 
+6. Review 1 — Project Initiation & Planning 
+● 
+Focus: understanding of the problem statement, literature survey, and planned methodology. 
+● 
+Students should demonstrate clarity in objectives, a well-researched background and rationale, and initial 
+planning covering team roles, tools selected, and timelines. 
+● 
+The panel should evaluate feasibility and scope early, to help teams avoid major pivots later in the project. 
+Students must present: 
+● 
+Problem statement and objectives 
+● 
+Literature survey summary 
+● 
+Proposed methodology and initial project plan (roles, tools, timeline) 
+Panel Evaluation Rubric — Review 1 
+S.No Criterion 
+Max 
+Marks 
+Marks Awarded 
+Remarks 
+1 
+Problem Statement & Objectives 
+Full marks: the problem is precisely defined, with SMART 
+objectives that directly address it. 
+10 
+ 
+ 
+2 
+Background & Literature Review 
+Full marks: the survey covers sufficient recent, credible 
+sources and clearly identifies the gaps the project will 
+address. 
+10 
+ 
+ 
+3 
+Methodology & Planning 
+Full marks: methodology is well-justified and feasible; a 
+realistic plan with milestones, roles, and tools is presented. 
+10 
+ 
+ 
+4 
+Stakeholder & User Needs Analysis 
+Full marks: target users/stakeholders are clearly identified 
+and their needs are used to shape requirements. 
+10 
+ 
+ 
+5 
+Presentation & Communication 
+Full marks: the presentation is clear, well-organized, and 
+confidently delivered; questions are answered accurately. 
+10 
+ 
+ 
+Total Marks 
+50 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+=== PAGE 6 ===
+Page 6 of 14 
+Guide's Individual Evaluation Sheet — Review 1 
+The guide completes this sheet independently for each student, based on meeting attendance, contribution to 
+planning/design/implementation, active participation, and communication with the guide. Marks may vary between students on the 
+same project according to individual involvement. 
+S.No Criterion 
+Max 
+Marks 
+Student 1 
+Student 2 
+Student 3 
+Student 4 
+Student 5 
+ 
+Registration 
+Number 
+— 
+ 
+ 
+ 
+ 
+ 
+1 
+Problem 
+Statement & 
+Objectives 
+10 
+ 
+ 
+ 
+ 
+ 
+2 
+Background & 
+Literature Review 
+10 
+ 
+ 
+ 
+ 
+ 
+3 
+Methodology & 
+Planning 
+10 
+ 
+ 
+ 
+ 
+ 
+4 
+Stakeholder & 
+User Needs 
+Analysis 
+10 
+ 
+ 
+ 
+ 
+ 
+5 
+Presentation & 
+Communication 
+10 
+ 
+ 
+ 
+ 
+ 
+Total 
+50 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Guide Signature: _______________________ 
+Date: _______________________ 
+ 
+ 
+ 
+=== PAGE 7 ===
+Page 7 of 14 
+7. Review 2 — System Design & Partial Implementation 
+● 
+Focus: design decisions, architecture diagrams, and the first stages of implementation. 
+● 
+The panel should confirm integration of Agile practices where applicable and assess team collaboration. 
+Students must present: 
+● 
+System Requirements Specification (SRS) 
+● 
+ER / UML / Architecture diagrams 
+● 
+Working prototype(s) or initial module(s) 
+Panel Evaluation Rubric — Review 2 
+S.No Criterion 
+Max 
+Marks 
+Marks Awarded 
+Remarks 
+1 
+System Requirements & Functional Specs 
+Full marks: requirements are complete, unambiguous, and 
+traceable to the problem statement. 
+10 
+ 
+ 
+2 
+System Design & Architecture 
+Full marks: architecture/ER/UML diagrams are complete, 
+consistent, and justify key design decisions. 
+10 
+ 
+ 
+3 
+Initial Implementation / Prototype 
+Full marks: a working prototype demonstrates core 
+functionality aligned with the design. 
+10 
+ 
+ 
+4 
+Use of Tools / Technologies 
+Full marks: tools and technologies are appropriate, 
+correctly applied, and justified. 
+10 
+ 
+ 
+5 
+Teamwork & Agile Practice 
+Full marks: there is clear evidence of iterative development, 
+sprint planning, and effective team collaboration. 
+10 
+ 
+ 
+Total Marks 
+50 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+=== PAGE 8 ===
+Page 8 of 14 
+Guide's Individual Evaluation Sheet — Review 2 
+The guide completes this sheet independently for each student, based on meeting attendance, contribution to 
+planning/design/implementation, active participation, and communication with the guide. Marks may vary between students on the 
+same project according to individual involvement. 
+S.No Criterion 
+Max 
+Marks 
+Student 1 
+Student 2 
+Student 3 
+Student 4 
+Student 5 
+ 
+Registration 
+Number 
+— 
+ 
+ 
+ 
+ 
+ 
+1 
+System 
+Requirements & 
+Functional Specs 
+10 
+ 
+ 
+ 
+ 
+ 
+2 
+System Design & 
+Architecture 
+10 
+ 
+ 
+ 
+ 
+ 
+3 
+Initial 
+Implementation / 
+Prototype 
+10 
+ 
+ 
+ 
+ 
+ 
+4 
+Use of Tools / 
+Technologies 
+10 
+ 
+ 
+ 
+ 
+ 
+5 
+Teamwork & 
+Agile Practice 
+10 
+ 
+ 
+ 
+ 
+ 
+Total 
+50 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Guide Signature: _______________________ 
+Date: _______________________ 
+ 
+ 
+ 
+=== PAGE 9 ===
+Page 9 of 14 
+8. Review 3 — Final Implementation & Evaluation 
+● 
+This is the most critical internal review, validating full functionality of the system, final testing results and 
+performance metrics, and use-case scenarios demonstrating real-world applicability. 
+● 
+Final documentation should be complete or near-final at this stage. 
+● 
+Soft skills such as communication, reflection, and professionalism should also be assessed. 
+Students must present: 
+● 
+Fully functional system demonstration 
+● 
+Testing results and performance metrics 
+● 
+Near-final project documentation 
+Panel Evaluation Rubric — Review 3 
+S.No Criterion 
+Max 
+Marks 
+Marks Awarded 
+Remarks 
+1 
+Completed System Functionality 
+Full marks: all planned features are implemented and 
+functioning correctly and reliably. 
+20 
+ 
+ 
+2 
+Testing & Performance Evaluation 
+Full marks: comprehensive test cases are documented with 
+clear results and performance metrics. 
+10 
+ 
+ 
+3 
+Real-world Use Cases / Impact 
+Full marks: the demonstration clearly shows practical 
+applicability and value to intended users. 
+10 
+ 
+ 
+4 
+Reflection, Learning & Future Scope 
+Full marks: reflection on challenges and learnings is 
+thoughtful, with a credible plan for future work. 
+10 
+ 
+ 
+Total Marks 
+50 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+=== PAGE 10 ===
+Page 10 of 14 
+Guide's Individual Evaluation Sheet — Review 3 
+The guide completes this sheet independently for each student, based on meeting attendance, contribution to 
+planning/design/implementation, active participation, and communication with the guide. Marks may vary between students on the 
+same project according to individual involvement. 
+S.No Criterion 
+Max 
+Marks 
+Student 1 
+Student 2 
+Student 3 
+Student 4 
+Student 5 
+ 
+Registration 
+Number 
+— 
+ 
+ 
+ 
+ 
+ 
+1 
+Completed 
+System 
+Functionality 
+20 
+ 
+ 
+ 
+ 
+ 
+2 
+Testing & 
+Performance 
+Evaluation 
+10 
+ 
+ 
+ 
+ 
+ 
+3 
+Real-world Use 
+Cases / Impact 
+10 
+ 
+ 
+ 
+ 
+ 
+4 
+Reflection, 
+Learning & 
+Future Scope 
+10 
+ 
+ 
+ 
+ 
+ 
+Total 
+50 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Guide Signature: _______________________ 
+Date: _______________________ 
+ 
+ 
+ 
+=== PAGE 11 ===
+Page 11 of 14 
+9. Final End-Semester External Review 
+Pre-Review Preparations 
+Guide Presence is Mandatory: the final review must not be conducted without the internal project guide's presence. 
+Document Submission (2–3 days before the review): 
+● 
+Final project report (spiral/hardbound, signed by the guide) 
+● 
+Presentation slides, as per department format 
+● 
+User manual / supporting documents, if applicable 
+● 
+Project demonstration link / code repository, if applicable 
+Project Display Setup: ensure laptops are functional, code is ready for live demonstration, and any required 
+software/hardware is set up in advance. 
+Review Process 
+● 
+Each team is allotted 20–25 minutes in total: 10–15 minutes for presentation and 5–10 minutes for Q&A and 
+demonstration. 
+● 
+The presentation must cover: problem statement, objectives, methodology, architecture/design, live 
+demonstration, and outcomes with future scope. 
+● 
+Grading must reflect technical depth, execution quality, learning outcomes, and practical applicability. 
+Post-Review Responsibilities 
+● 
+Marks awarded by the examiner must be recorded and signed by all panel members. 
+● 
+Constructive feedback should be given to each team, verbally or in writing. 
+● 
+Final hardbound reports (with signatures) must be submitted for departmental archiving. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+=== PAGE 12 ===
+Page 12 of 14 
+Evaluation Rubric — Final End-Semester External Review 
+S.No Criterion 
+Max 
+Marks 
+Marks Awarded 
+Remarks 
+1 
+Problem Definition & Objectives 
+Full marks: the problem and objectives are precisely stated 
+and well-motivated. 
+10 
+ 
+ 
+2 
+Literature Review & Technical Background 
+Full marks: the work demonstrates thorough grounding in 
+relevant, current literature and technology. 
+10 
+ 
+ 
+3 
+System Design & Architecture 
+Full marks: the design is complete, sound, and clearly 
+documented. 
+10 
+ 
+ 
+4 
+Implementation & Functionality 
+Full marks: the system is fully implemented and functions as 
+intended. 
+10 
+ 
+ 
+5 
+Testing, Validation & QA 
+Full marks: testing is rigorous, with clear evidence of 
+validation and quality assurance. 
+5 
+ 
+ 
+6 
+Innovation / Use of Advanced Tools & Techniques 
+Full marks: the project demonstrates originality or effective 
+use of advanced tools/techniques. 
+10 
+ 
+ 
+7 
+Team Collaboration & Project Management 
+Full marks: there is clear evidence of effective planning, 
+coordination, and role distribution. 
+5 
+ 
+ 
+8 
+Report Quality & Documentation 
+Full marks: the report is complete, well-organized, and 
+professionally presented. 
+10 
+ 
+ 
+9 
+Viva-Voce & Presentation Skills 
+Full marks: responses are confident and clear, with accurate 
+articulation of the work. 
+10 
+ 
+ 
+10 
+Guide Evaluation 
+Full marks: reflects the guide's overall assessment of the 
+student's/team's engagement, effort, and contribution 
+across the project. 
+20 
+ 
+ 
+Total Marks 
+100 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Guide Signature: _______________________ 
+Date: _______________________ 
+ 
+ 
+ 
+=== PAGE 13 ===
+Page 13 of 14 
+10. Score Consolidation Sheet 
+To be completed by the Section In-Charge after all reviews are complete, using the scaling formulas in Section 3.1. One sheet per 
+student. 
+Student Name 
+ 
+ 
+ 
+Registration Number 
+ 
+ 
+ 
+Project Title 
+ 
+ 
+ 
+ 
+Component 
+Raw Score 
+Scaled Score 
+Max 
+Review 1 — Continuous Evaluation 
+___ / 50 
+___ 
+5 
+Review 1 — Guide Evaluation 
+___ / 50 
+___ 
+5 
+Review 1 — Panel Review 
+___ / 50 
+___ 
+10 
+Review 2 — Continuous Evaluation 
+___ / 50 
+___ 
+5 
+Review 2 — Guide Evaluation 
+___ / 50 
+___ 
+5 
+Review 2 — Panel Review 
+___ / 50 
+___ 
+10 
+Review 3 — Continuous Evaluation 
+___ / 50 
+___ 
+5 
+Review 3 — Guide Evaluation 
+___ / 50 
+___ 
+5 
+Review 3 — Panel Review 
+___ / 50 
+___ 
+10 
+Final End-Semester External Review 
+___ / 100 
+___ 
+40 
+Overall Total 
+ 
+___ 
+100 
+ 
+ 
+=== PAGE 14 ===
+Page 14 of 14 
+11. Document Submission Checklist 
+A consolidated checklist of documents expected at each stage of the Capstone Project. 
+Stage 
+Documents Required 
+Review 1 
+Problem statement, literature survey summary, initial project plan 
+Review 2 
+System Requirements Specification, architecture/ER/UML diagrams, working prototype 
+Review 3 
+Fully functional system, test reports and performance metrics, near-final documentation 
+Final External Review 
+Final hardbound report (signed), presentation slides, user manual (if any), code repository / 
+demo link (if any) 
+ 

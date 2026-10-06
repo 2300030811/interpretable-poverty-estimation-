@@ -3,6 +3,7 @@ DSCI-28 Capstone Application: Interpretable Cross-Country Well-Being Estimation
 Academic Year 2026–27 | KL University | Department of Computer Science & Engineering
 """
 import sys
+import json
 from pathlib import Path
 import streamlit as st
 import pandas as pd

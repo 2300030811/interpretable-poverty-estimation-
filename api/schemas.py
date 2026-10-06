@@ -71,4 +71,5 @@ class ConformalItem(BaseModel):
 class ConformalResponse(BaseModel):
     alpha: float
     target_coverage: float
+    q_hat: Optional[float] = None
     results: List[ConformalItem]

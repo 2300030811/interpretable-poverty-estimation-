@@ -85,7 +85,7 @@
         "passed": true
       },
       {
-        "check": "Data lineage hash: d02adba7",
+        "check": "Data lineage hash: d02adba7 (expected: d02adba7)",
         "passed": true
       },
       {
@@ -95,6 +95,6 @@
     ],
     "passed": true
   },
-  "saved_at": "2026-10-06T08:29:01.036869",
+  "saved_at": "2026-10-06T23:56:36.698118",
   "seed": 42
 }

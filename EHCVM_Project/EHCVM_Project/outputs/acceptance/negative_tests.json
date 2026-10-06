@@ -4,51 +4,51 @@
     "description": "Country-specific overfitting",
     "countries": {
       "Benin": {
-        "within_acc": 0.8033602986932171,
-        "loco_acc": 0.7384213147410359,
-        "gap_pp": 6.493898395218123,
+        "within_acc": 0.8008711885500933,
+        "loco_acc": 0.7394173306772909,
+        "gap_pp": 6.145385787280244,
         "overfitting_flagged": false
       },
       "Burkina Faso": {
-        "within_acc": 0.7987616099071208,
-        "loco_acc": 0.7675859931825225,
-        "gap_pp": 3.117561672459823,
+        "within_acc": 0.8003095975232198,
+        "loco_acc": 0.7666563371552526,
+        "gap_pp": 3.365326036796723,
         "overfitting_flagged": false
       },
       "C\u00f4te d'Ivoire": {
-        "within_acc": 0.7990744311608176,
-        "loco_acc": 0.7260316236020053,
-        "gap_pp": 7.304280755881221,
+        "within_acc": 0.8006170458927883,
+        "loco_acc": 0.7244890088700348,
+        "gap_pp": 7.61280370227535,
         "overfitting_flagged": false
       },
       "Guinea-Bissau": {
-        "within_acc": 0.7899159663865546,
-        "loco_acc": 0.7634087086525883,
-        "gap_pp": 2.650725773396634,
+        "within_acc": 0.7871148459383753,
+        "loco_acc": 0.7639693515230798,
+        "gap_pp": 2.3145494415295564,
         "overfitting_flagged": false
       },
       "Mali": {
-        "within_acc": 0.8331977217249796,
-        "loco_acc": 0.7584242226924955,
-        "gap_pp": 7.47734990324841,
+        "within_acc": 0.8356387306753458,
+        "loco_acc": 0.7590753703402247,
+        "gap_pp": 7.656336033512112,
         "overfitting_flagged": false
       },
       "Niger": {
-        "within_acc": 0.8113207547169812,
-        "loco_acc": 0.7573240712775596,
-        "gap_pp": 5.399668343942155,
+        "within_acc": 0.8143396226415094,
+        "loco_acc": 0.7576260948353971,
+        "gap_pp": 5.671352780611228,
         "overfitting_flagged": false
       },
       "Senegal": {
-        "within_acc": 0.8286516853932584,
-        "loco_acc": 0.7643258426966292,
-        "gap_pp": 6.432584269662922,
+        "within_acc": 0.824438202247191,
+        "loco_acc": 0.763061797752809,
+        "gap_pp": 6.137640449438198,
         "overfitting_flagged": false
       },
       "Togo": {
         "within_acc": 0.777262180974478,
-        "loco_acc": 0.7065923862581244,
-        "gap_pp": 7.06697947163536,
+        "loco_acc": 0.7072113896626432,
+        "gap_pp": 7.005079131183479,
         "overfitting_flagged": false
       }
     },
@@ -107,14 +107,14 @@
     "test": "NT-5",
     "description": "Partition defect detection",
     "defect_country": "Benin",
-    "original_acc": 0.7973107569721115,
-    "defective_acc": 0.6139193227091634,
-    "partition_drop_pp": 18.33914342629481,
-    "global_drop_pp": 2.0728648991813037,
+    "original_acc": 0.796937250996016,
+    "defective_acc": 0.6140438247011952,
+    "partition_drop_pp": 18.289342629482075,
+    "global_drop_pp": 2.0734931076758945,
     "defect_detected_by_partition": true,
     "hidden_by_global": false,
     "passed": true
   },
-  "saved_at": "2026-09-21T08:25:53.577233",
+  "saved_at": "2026-10-07T00:07:46.702181",
   "seed": 42
 }

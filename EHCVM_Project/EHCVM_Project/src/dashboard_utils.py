@@ -43,10 +43,10 @@ FEATURE_LABELS = {
     "superf": "Agricultural Land Area (ha)",
     "grosrum": "Large Livestock / Cattle Head",
     "petitrum": "Small Ruminants (Goats/Sheep)",
-    "sol": "Floor Material Quality (1-5)",
-    "mur": "Wall Construction Quality (1-5)",
-    "toit": "Roof Material Quality (1-5)",
-    "toilet": "Sanitation / Latrine Type (1-5)",
+    "sol": "Floor Material Quality (0=Dirt, 1=Finished)",
+    "mur": "Wall Construction Quality (0=Mud/Mat, 1=Masonry)",
+    "toit": "Roof Material Quality (0=Thatch, 1=Sheet/Concrete)",
+    "toilet": "Sanitation Facility (0=Unimproved, 1=Improved)",
     "eauboi_ss": "Dry Season Drinking Water Source",
     "eauboi_sp": "Rainy Season Drinking Water Source",
     "hnation": "Household Head Nationality",
@@ -72,22 +72,22 @@ HOUSEHOLD_ARCHETYPES = {
     "🏚️ Impoverished Rural Household (Large, No Assets)": {
         "hhsize": 11, "ind_telpor": 0, "ind_internet": 0, "ind_bank": 0, "ind_salaire": 0,
         "ind_mal30j": 2, "ind_educ_hi": 1, "tv": 0, "frigo": 0, "car": 0, "decod": 0,
-        "elec_ac": 0, "sol": 1, "superf": 1.0, "grosrum": 0, "petitrum": 1, "sh_co_eco": 1
+        "elec_ac": 0, "sol": 0, "superf": 1.0, "grosrum": 0, "petitrum": 1, "sh_co_eco": 1
     },
     "🌾 Vulnerable Agro-Pastoralist (Livestock Dependent)": {
         "hhsize": 7, "ind_telpor": 1, "ind_internet": 0, "ind_bank": 0, "ind_salaire": 0,
         "ind_mal30j": 1, "ind_educ_hi": 1, "tv": 0, "frigo": 0, "car": 0, "decod": 0,
-        "elec_ac": 0, "sol": 2, "superf": 3.5, "grosrum": 3, "petitrum": 8, "sh_co_eco": 1
+        "elec_ac": 0, "sol": 0, "superf": 3.5, "grosrum": 3, "petitrum": 8, "sh_co_eco": 1
     },
     "🏙️ Emerging Urban Household (Connected, Wage Earner)": {
         "hhsize": 4, "ind_telpor": 3, "ind_internet": 2, "ind_bank": 2, "ind_salaire": 2,
         "ind_mal30j": 0, "ind_educ_hi": 3, "tv": 1, "frigo": 1, "car": 0, "decod": 1,
-        "elec_ac": 1, "sol": 4, "superf": 0.0, "grosrum": 0, "petitrum": 0, "sh_co_eco": 0
+        "elec_ac": 1, "sol": 1, "superf": 0.0, "grosrum": 0, "petitrum": 0, "sh_co_eco": 0
     },
     "🚗 Affluent Urban Household (Protected)": {
         "hhsize": 3, "ind_telpor": 3, "ind_internet": 3, "ind_bank": 3, "ind_salaire": 2,
         "ind_mal30j": 0, "ind_educ_hi": 4, "tv": 1, "frigo": 1, "car": 1, "decod": 1,
-        "elec_ac": 1, "sol": 5, "superf": 0.0, "grosrum": 0, "petitrum": 0, "sh_co_eco": 0
+        "elec_ac": 1, "sol": 1, "superf": 0.0, "grosrum": 0, "petitrum": 0, "sh_co_eco": 0
     }
 }
 

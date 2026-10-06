@@ -203,6 +203,11 @@ def run_conformal_audit(data: dict = None, alpha: float = 0.10) -> dict:
     print(f"    - Certain Non-Poor:  {pooled_metrics['certain_non_poor_pct']:.1f}% (exclude)")
     print(f"    - Ambiguous:         {pooled_metrics['ambiguous_pct']:.1f}% (field audit)")
 
+    # Export calibration split for API and runtime inference
+    cal_out = config.OUTPUT_MODELS / "conformal_calibration.npz"
+    cal_out.parent.mkdir(parents=True, exist_ok=True)
+    np.savez_compressed(cal_out, probs_cal=pooled_p_cal, y_cal=pooled_y_cal)
+
     final_report = {
         "alpha": alpha,
         "target_coverage": 1.0 - alpha,
@@ -215,6 +220,34 @@ def run_conformal_audit(data: dict = None, alpha: float = 0.10) -> dict:
     out_path.write_text(json.dumps(final_report, indent=2), encoding="utf-8")
     print(f"\n  -> Saved: {out_path.name}")
     return final_report
+
+
+def load_calibrated_classifier(alpha: float = 0.10) -> ConformalPovertyClassifier:
+    """
+    Return a ConformalPovertyClassifier calibrated on the pooled calibration dataset.
+    Loads cached calibration probabilities from outputs/models/conformal_calibration.npz
+    and runs calibrate(probs, y) dynamically for the requested alpha.
+    """
+    cp = ConformalPovertyClassifier(alpha=alpha)
+    cal_path = config.OUTPUT_MODELS / "conformal_calibration.npz"
+    if cal_path.exists():
+        data = np.load(cal_path)
+        cp.calibrate(data["probs_cal"], data["y_cal"])
+        return cp
+
+    # ponytail: fallback if calibration npz missing but o6 JSON exists
+    o6_path = config.OUTPUT_RESULTS / "o6_conformal_analysis.json"
+    if o6_path.exists():
+        try:
+            o6 = json.loads(o6_path.read_text(encoding="utf-8"))
+            cp.q_hat = float(o6.get("pooled", {}).get("q_hat", 0.61096))
+            cp.cal_size = int(o6.get("pooled", {}).get("calibration_samples", 27959))
+            return cp
+        except Exception:
+            pass
+
+    cp.q_hat = 0.61096
+    return cp
 
 
 if __name__ == "__main__":

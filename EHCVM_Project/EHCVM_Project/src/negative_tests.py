@@ -70,9 +70,10 @@ def nt1_country_overfitting(data: dict[str, pd.DataFrame]) -> dict:
               f"gap={gap:+.1f}pp  {mark}")
 
     flagged_count = sum(1 for c in results["countries"].values() if c["overfitting_flagged"])
-    results["passed"] = True  # NT-1 passes if detection works (flagging is the feature)
+    # NT-1 passes if cross-border transfer degradation is bounded (gap <= 10pp across all nations)
+    results["passed"] = bool(flagged_count == 0)
     results["flagged_countries"] = flagged_count
-    print(f"    -> {flagged_count} countries flagged for overfitting risk")
+    print(f"    -> {flagged_count} countries flagged for overfitting risk (Passed: {results['passed']})")
     return results
 
 

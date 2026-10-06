@@ -160,12 +160,18 @@ def check_ac4_frozen_envelope() -> dict:
     })
 
     # Check data versions match (hash of lineage report)
+    EXPECTED_LINEAGE_HASH = "d02adba7"
     lineage = config.DATA_PROCESSED / "lineage_report.json"
     if lineage.exists():
         h = hashlib.md5(lineage.read_bytes()).hexdigest()[:8]
         checks["tests"].append({
-            "check": f"Data lineage hash: {h}",
-            "passed": True,
+            "check": f"Data lineage hash: {h} (expected: {EXPECTED_LINEAGE_HASH})",
+            "passed": h == EXPECTED_LINEAGE_HASH,
+        })
+    else:
+        checks["tests"].append({
+            "check": "Data lineage report exists",
+            "passed": False,
         })
 
     # Verify frozen hyperparameters are recorded

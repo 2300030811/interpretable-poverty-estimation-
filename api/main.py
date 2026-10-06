@@ -41,7 +41,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -187,9 +187,9 @@ def generate_counterfactual_recourse(req: RecourseRequest):
 def evaluate_conformal_sets(req: ConformalRequest):
     """
     Compute mathematically guaranteed (1 - alpha) prediction sets and triage actions.
+    Calibrates on pooled split calibration set dynamically for requested alpha.
     """
-    cp = conformal.ConformalPovertyClassifier(alpha=req.alpha)
-    cp.q_hat = 0.50  # calibrated threshold
+    cp = conformal.load_calibrated_classifier(alpha=req.alpha)
     probs_arr = np.array(req.probabilities)
     sets = cp.predict_sets(probs_arr)
 
@@ -206,6 +206,7 @@ def evaluate_conformal_sets(req: ConformalRequest):
     return ConformalResponse(
         alpha=req.alpha,
         target_coverage=1.0 - req.alpha,
+        q_hat=float(cp.q_hat) if cp.q_hat is not None else None,
         results=items,
     )
 

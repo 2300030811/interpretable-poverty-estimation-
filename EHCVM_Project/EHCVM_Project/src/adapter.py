@@ -160,7 +160,7 @@ def evaluate_external_survey(
     Harmonizes columns -> Model inference -> Conformal triage -> Recourse sample.
     """
     from .dashboard_utils import load_simulator_artifact
-    from .conformal import ConformalPovertyClassifier
+    from .conformal import ConformalPovertyClassifier, load_calibrated_classifier
     from .recourse import compute_recourse
 
     artifact = load_simulator_artifact()
@@ -180,9 +180,7 @@ def evaluate_external_survey(
     headcount = float(np.mean(is_poor_policy))
 
     # 3. Conformal Prediction Triage
-    cp = ConformalPovertyClassifier(alpha=alpha)
-    # Using baseline q_hat ~ 0.50 if calibration not passed
-    cp.q_hat = 0.50
+    cp = load_calibrated_classifier(alpha=alpha)
     triage_sets = cp.predict_sets(probs)
     categories = [s["category"] for s in triage_sets]
     n = len(df_clean)

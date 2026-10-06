@@ -19,7 +19,9 @@ def get_connection(db_path: Path = None, read_only: bool = False) -> duckdb.Duck
     """Return a DuckDB connection for the capstone database."""
     target_path = Path(db_path or config.DB_PATH)
     target_path.parent.mkdir(parents=True, exist_ok=True)
-    return duckdb.connect(str(target_path), read_only=read_only)
+    # ponytail: lockdown external filesystem/network access for read-only user queries (prevents arbitrary file read via SQL console)
+    cfg = {"enable_external_access": False} if read_only else {}
+    return duckdb.connect(str(target_path), read_only=read_only, config=cfg)
 
 
 def init_db(db_path: Path = None) -> None:

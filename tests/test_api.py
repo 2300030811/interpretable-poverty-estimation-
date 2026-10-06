@@ -80,6 +80,17 @@ def test_api_conformal():
     assert len(data["results"]) == 3
     assert data["results"][0]["category"] == "CERTAIN_NON_POOR"
     assert data["results"][2]["category"] == "CERTAIN_POOR"
+    assert "q_hat" in data
+    assert data["q_hat"] is not None
+    assert 0.4 < data["q_hat"] < 0.8
+
+def test_api_conformal_alpha_sensitivity():
+    """Verify that changing alpha dynamically recalculates calibrated threshold q_hat."""
+    res_05 = client.post("/v1/conformal", json={"probabilities": [0.5], "alpha": 0.05}).json()
+    res_20 = client.post("/v1/conformal", json={"probabilities": [0.5], "alpha": 0.20}).json()
+    assert res_05["q_hat"] != res_20["q_hat"]
+    # Tighter coverage guarantee (smaller alpha) requires higher nonconformity quantile
+    assert res_05["q_hat"] > res_20["q_hat"]
 
 def test_api_upload_survey():
     csv_content = b"family_size,grid_electricity,cellphone\n8,0,0\n3,1,2\n"

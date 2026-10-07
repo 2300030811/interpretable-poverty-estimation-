@@ -31,14 +31,19 @@ def train_and_export_dashboard_model(data: dict = None) -> dict:
     X = pooled[feature_cols]
     y = pooled[config.TARGET_COL].values
 
-    print(f"Training LightGBM on {len(pooled):,} pooled households with {len(feature_cols)} features...")
+    # Honest split: 80% train for model & TreeSHAP, 20% strictly held-out for conformal calibration
+    X_train, X_cal, y_train, y_cal = train_test_split(
+        X, y, test_size=0.20, random_state=config.RANDOM_SEED, stratify=y
+    )
+
+    print(f"Training LightGBM on {len(X_train):,} training households with {len(feature_cols)} features...")
     t0 = time.time()
 
     model = lgb.LGBMClassifier(
         random_state=config.RANDOM_SEED,
         **config.MODEL_PARAMS["lightgbm"]
     )
-    model.fit(X, y)
+    model.fit(X_train, y_train)
     print(f"  Model trained in {time.time() - t0:.2f}s")
 
     print("Fitting TreeSHAP explainer...")
@@ -66,16 +71,13 @@ def train_and_export_dashboard_model(data: dict = None) -> dict:
     joblib.dump(artifact, out_model_path, compress=3)
     print(f"  -> Exported model artifact: {out_model_path} ({out_model_path.stat().st_size / 1e6:.2f} MB)")
 
-    # Generate and export conformal calibration split (50% cal / 50% test)
-    print("Generating conformal calibration split...")
-    probs = model.predict_proba(X)
-    _, _, y_cal, _, p_cal, _ = train_test_split(
-        X, y, probs, test_size=0.5, random_state=config.RANDOM_SEED, stratify=y
-    )
+    # Generate and export conformal calibration split on strictly held-out calibration set (X_cal)
+    print("Generating held-out conformal calibration split...")
+    probs_cal = model.predict_proba(X_cal)
 
     out_cal_path = config.OUTPUT_MODELS / "conformal_calibration.npz"
-    np.savez_compressed(out_cal_path, probs_cal=p_cal, y_cal=y_cal)
-    print(f"  -> Exported conformal calibration: {out_cal_path} ({len(y_cal):,} samples, {out_cal_path.stat().st_size / 1e3:.1f} KB)")
+    np.savez_compressed(out_cal_path, probs_cal=probs_cal, y_cal=y_cal)
+    print(f"  -> Exported conformal calibration: {out_cal_path} ({len(y_cal):,} held-out samples, {out_cal_path.stat().st_size / 1e3:.1f} KB)")
 
     return artifact
 

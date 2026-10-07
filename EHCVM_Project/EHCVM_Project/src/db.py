@@ -99,10 +99,21 @@ def populate_db(db_path: Path = None, force: bool = False) -> dict:
             n_hh = len(df)
             headcount = float(df[config.TARGET_COL].mean()) if config.TARGET_COL in df.columns else 0.0
 
+            # Extract national poverty threshold (zref) if available
+            zref_val = None
+            try:
+                paths = config.get_file_paths(name)
+                if paths["welfare"].exists():
+                    w_sample = pd.read_csv(paths["welfare"], usecols=["zref"], nrows=5)
+                    if "zref" in w_sample.columns:
+                        zref_val = round(float(w_sample["zref"].iloc[0]), 2)
+            except Exception:
+                pass
+
             country_rows.append({
                 "country_code": code.upper(),
                 "country_name": name,
-                "zref_threshold": None, # Will be filled if present
+                "zref_threshold": zref_val,
                 "total_households": n_hh,
                 "poverty_headcount": headcount
             })
@@ -138,12 +149,13 @@ def populate_db(db_path: Path = None, force: bool = False) -> dict:
                         arch = parts[1].upper() if len(parts) > 1 else exp_id
                         protocol = data.get("method", "UNKNOWN")
 
+                        auc_val = macro.get("auc_roc") if macro.get("auc_roc") is not None else macro.get("roc_auc")
                         exp_rows.append({
                             "experiment_id": exp_id,
                             "model_architecture": arch,
                             "evaluation_protocol": protocol,
                             "macro_accuracy": macro.get("accuracy"),
-                            "macro_auc_roc": macro.get("roc_auc"),
+                            "macro_auc_roc": auc_val,
                             "macro_f1": macro.get("f1"),
                             "macro_brier": macro.get("brier"),
                             "country_results_json": json.dumps(data.get("countries", {}))

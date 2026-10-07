@@ -4,6 +4,7 @@ Academic Year 2026–27 | KL University | Department of Computer Science & Engin
 """
 import sys
 import json
+import hashlib
 from pathlib import Path
 import streamlit as st
 import pandas as pd
@@ -118,7 +119,7 @@ json_data = dashboard_utils.load_json_records()
 
 # ── Sidebar: Capstone Identity & Team Credits ─────────────────────────────────
 with st.sidebar:
-    st.image("https://img.shields.io/badge/Academic%20Year-2026--27-blue", use_container_width=False)
+    st.markdown("<span style='background: #2563eb; color: white; padding: 3px 10px; border-radius: 12px; font-weight: 600; font-size: 0.75rem; display: inline-block; margin-bottom: 8px;'>Academic Year · 2026–27</span>", unsafe_allow_html=True)
     st.title("DSCI-28 Capstone")
     st.markdown("**Interpretable Cross-Country Household Well-Being Estimation**")
     st.caption("World Bank EHCVM 2021 Survey Microdata · 8 West African Nations")
@@ -162,13 +163,20 @@ with st.sidebar:
 
     ac_pass = all(ac_data.get(k, {}).get("passed", False) for k in ["AC-1", "AC-2", "AC-3", "AC-4"])
     nt_pass = all(nt_data.get(k, {}).get("passed", False) for k in ["NT-1", "NT-2", "NT-3", "NT-4", "NT-5"])
-    conf_pass = conf_data.get("passed", True)
-    fair_pass = fair_data.get("passed", False)
+    conf_pass = conf_data.get("passed", False) if conf_file.exists() else False
+    fair_pass = fair_data.get("passed", False) if fair_file.exists() else False
+
+    di_gender = fair_data.get("pooled", {}).get("gender", {}).get("disparate_impact_ratio")
+    if fair_pass:
+        fair_badge = "<span class='badge-pass'>PASS (>=0.80)</span>"
+    elif di_gender is not None:
+        fair_badge = f"<span class='badge-fail'>ALERT (DI {di_gender:.2f})</span>"
+    else:
+        fair_badge = "<span class='badge-fail'>ISSUES</span>"
 
     ac_badge = "<span class='badge-pass'>ALL PASS</span>" if ac_pass else "<span class='badge-fail'>ISSUES</span>"
     nt_badge = "<span class='badge-pass'>ALL PASS</span>" if nt_pass else "<span class='badge-fail'>ISSUES</span>"
     conf_badge = "<span class='badge-pass'>Conformal 90%</span>" if conf_pass else "<span class='badge-fail'>Degraded</span>"
-    fair_badge = "<span class='badge-pass'>PASS (>=0.80)</span>" if fair_pass else "<span class='badge-fail'>ALERT (DI 0.73)</span>"
 
     st.markdown(f"• **AC-1 to AC-4**: {ac_badge}", unsafe_allow_html=True)
     st.markdown(f"• **NT-1 to NT-5**: {nt_badge}", unsafe_allow_html=True)
@@ -177,7 +185,10 @@ with st.sidebar:
     st.markdown("• **REST API**: <span class='badge-info'>FastAPI v2.1</span>", unsafe_allow_html=True)
     st.markdown(f"• **Uncertainty**: {conf_badge}", unsafe_allow_html=True)
     st.markdown("• **Lineage Schema**: `pandera-v1.0`")
-    st.markdown("• **Reproducibility Hash**: `d02adba7`")
+
+    lineage_file = config.DATA_PROCESSED / "lineage_report.json"
+    rep_hash = hashlib.md5(lineage_file.read_bytes()).hexdigest()[:8] if lineage_file.exists() else "d02adba7"
+    st.markdown(f"• **Reproducibility Hash**: `{rep_hash}`")
     st.caption("Swagger Docs: [http://localhost:8000/docs](http://localhost:8000/docs)")
 
 # ── Main Header ───────────────────────────────────────────────────────────────
@@ -456,7 +467,8 @@ with tab_o3:
             sim_car = st.selectbox("Motor Vehicle / Car", ["No", "Yes"], index=1 if preset_vals.get("car") == 1 else 0)
             sim_decod = st.selectbox("TV Decoder / Satellite Dish", ["No", "Yes"], index=1 if preset_vals.get("decod") == 1 else 0)
             sim_elec = st.selectbox("Grid Electricity Access", ["No", "Yes"], index=1 if preset_vals.get("elec_ac") == 1 else 0)
-            sim_floor = st.select_slider("Floor Material Quality (1=Dirt, 5=Tiles)", options=[1, 2, 3, 4, 5], value=preset_vals.get("sol", 2))
+            floor_val = preset_vals.get("sol", 0)
+            sim_floor = st.selectbox("Floor Material Quality", ["Dirt / Earth (Unfinished)", "Cement / Tiles (Finished)"], index=1 if floor_val == 1 else 0)
 
         with sim_col3:
             st.markdown("**🌾 Agriculture, Shocks & Health**")
@@ -469,20 +481,21 @@ with tab_o3:
 
         submit_sim = st.form_submit_button("⚡ Run Real-Time Household Prediction & SHAP Decomposition", use_container_width=True)
 
-    # Simulator execution
+    # Simulator execution — convert person counts to household shares (0.0–1.0) expected by trained model
+    hh_n = max(1, sim_hhsize)
     user_inputs = {
         "hhsize": sim_hhsize,
-        "ind_telpor": sim_phones,
-        "ind_internet": sim_internet,
-        "ind_bank": sim_bank,
-        "ind_salaire": sim_wage,
-        "ind_mal30j": sim_sick,
+        "ind_telpor": min(1.0, sim_phones / hh_n),
+        "ind_internet": min(1.0, sim_internet / hh_n),
+        "ind_bank": min(1.0, sim_bank / hh_n),
+        "ind_salaire": min(1.0, sim_wage / hh_n),
+        "ind_mal30j": min(1.0, sim_sick / hh_n),
         "tv": 1 if sim_tv == "Yes" else 0,
         "frigo": 1 if sim_frigo == "Yes" else 0,
         "car": 1 if sim_car == "Yes" else 0,
         "decod": 1 if sim_decod == "Yes" else 0,
         "elec_ac": 1 if sim_elec == "Yes" else 0,
-        "sol": sim_floor,
+        "sol": 1 if "Finished" in sim_floor else 0,
         "superf": sim_land,
         "grosrum": sim_cattle,
         "petitrum": sim_ruminants,
@@ -571,12 +584,15 @@ with tab_o3:
         cmp_col1, cmp_col2 = st.columns(2)
 
         with cmp_col1:
-            if not is_poor_sym:
-                old_verdict = "<span style='color: #ef4444; font-weight: 700;'>🚫 AID DENIED</span>"
-                old_flaw = "<b>The Humanitarian Defect:</b> Because 49% is slightly under 50%, traditional machine learning denies aid. Leaving a vulnerable family without food or medicine over a 1% technicality is an <b>Exclusion Error</b>."
+            if is_poor_sym:
+                old_verdict = "<span style='color: #10b981; font-weight: 700;'>✅ AID APPROVED</span>"
+                old_flaw = f"Assigned poverty score is <b>{prob_poor:.1%}</b> (≥ 50%), qualifying under the rigid 50% cutoff."
             else:
-                old_verdict = "<span style='color: #ef4444; font-weight: 700;'>AID APPROVED</span>"
-                old_flaw = "Traditional systems only catch households that exceed 50%, missing millions of vulnerable families just below the cutoff."
+                old_verdict = "<span style='color: #ef4444; font-weight: 700;'>🚫 AID DENIED</span>"
+                if is_poor_policy:
+                    old_flaw = f"<b>The Humanitarian Defect:</b> Assigned score is <b>{prob_poor:.1%}</b>. Because it falls under 50%, traditional ML denies aid despite significant vulnerability (an <b>Exclusion Error</b>)."
+                else:
+                    old_flaw = f"Assigned score is <b>{prob_poor:.1%}</b> (< 50%). Household is deemed resilient and aid is not offered."
 
             st.markdown(f"""
             <div style='background: rgba(239, 68, 68, 0.08); border-left: 4px solid #ef4444; border-radius: 0 8px 8px 0; padding: 14px 18px;'>
@@ -589,12 +605,26 @@ with tab_o3:
             """, unsafe_allow_html=True)
 
         with cmp_col2:
+            if is_poor_policy:
+                new_verdict = "<span style='color: #10b981; font-weight: 700;'>✅ AID APPROVED</span>"
+                new_card_color = "#10b981"
+                new_card_bg = "rgba(16, 185, 129, 0.08)"
+                if not is_poor_sym:
+                    new_reason = f"<b>Exclusion Protection:</b> With poverty probability at <b>{prob_poor:.1%}</b>, this household would be denied under a 50% cutoff, but is protected under our calibrated policy cutoff (τ* = {sim_threshold:.2f})."
+                else:
+                    new_reason = f"Household qualifies under calibrated policy cutoff (τ* = {sim_threshold:.2f}) with poverty probability <b>{prob_poor:.1%}</b>."
+            else:
+                new_verdict = "<span style='color: #3b82f6; font-weight: 700;'>🟢 AID NOT REQUIRED</span>"
+                new_card_color = "#3b82f6"
+                new_card_bg = "rgba(59, 130, 246, 0.08)"
+                new_reason = f"Household poverty likelihood (<b>{prob_poor:.1%}</b>) is below our {sim_threshold:.0%} policy cutoff. Aid is reserved for more vulnerable families, preventing fiscal leakage."
+
             st.markdown(f"""
-            <div style='background: rgba(16, 185, 129, 0.08); border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 14px 18px;'>
-                <h5 style='color: #10b981; margin-top: 0; margin-bottom: 6px;'>✅ DSCI-28 System (Our {sim_threshold:.0%} Humanitarian Cutoff)</h5>
+            <div style='background: {new_card_bg}; border-left: 4px solid {new_card_color}; border-radius: 0 8px 8px 0; padding: 14px 18px;'>
+                <h5 style='color: {new_card_color}; margin-top: 0; margin-bottom: 6px;'>✅ DSCI-28 System (Our {sim_threshold:.0%} Humanitarian Cutoff)</h5>
                 <div style='font-size: 0.9rem; color: #cbd5e1; line-height: 1.5;'>
-                    <b>Decision for this household:</b> <span style='color: #10b981; font-weight: 700;'>✅ AID APPROVED</span><br>
-                    <b>Why our system is superior:</b> In social welfare, excluding a starving family carries severe human cost. Our calibrated threshold (τ* = {sim_threshold:.2f}) <b>reduces exclusion errors by 14.5 percentage points</b>, protecting this household.
+                    <b>Decision for this household:</b> {new_verdict}<br>
+                    {new_reason}
                 </div>
             </div>
             """, unsafe_allow_html=True)
@@ -626,10 +656,11 @@ with tab_o3:
         )
 
         # 6. Counterfactual Recourse Recommendation
-        st.markdown("#### 🚀 Counterfactual Policy Recourse Plan")
+        st.markdown("#### 🚀 Model What-If: Counterfactual Recourse Simulation")
         st.markdown(
-            "Algorithmic recourse prescribes the minimum-cost, actionable interventions "
-            "required to transition this household out of poverty classification."
+            "Algorithmic recourse identifies the minimum-cost feature adjustments that flip this "
+            "household's model classification below the policy cutoff (Karimi et al., 2021). "
+            "*Note: Counterfactual plans reflect model sensitivity what-if scenarios rather than causal policy guarantees.*"
         )
 
         full_profile = pred_res.get("base_profile", user_inputs)
@@ -753,7 +784,8 @@ with tab_o4:
                 </div>
                 """, unsafe_allow_html=True)
 
-            st.caption(f"Net Policy Loss Score: **{welfare_loss:,.1f}** (Loss = {int(cost_ratio)} × {fn} + 1 × {fp})")
+            rate_loss = cost_ratio * excl + incl
+            st.caption(f"Rate-Weighted Welfare Loss: **{rate_loss:.3f}** (Loss = {int(cost_ratio)} × {excl*100:.1f}% + {incl*100:.1f}%) · Household Count Loss: **{welfare_loss:,.0f}** ({int(cost_ratio)} × {fn:,} + {fp:,})")
 
     with col_t4_chart:
         target_summary_df = csv_data.get("targeting_summary")

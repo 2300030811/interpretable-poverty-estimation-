@@ -63,6 +63,30 @@ def run():
         "duration_s": round(time.time() - t0, 1), "status": "DONE"
     }
 
+    # -- Dashboard model & Conformal calibration --------------------------
+    t0 = time.time()
+    from .train_dashboard_model import train_and_export_dashboard_model
+    train_and_export_dashboard_model(data)
+    telemetry["stages"]["train_dashboard_model"] = {
+        "duration_s": round(time.time() - t0, 1), "status": "DONE"
+    }
+
+    # -- Conformal audit --------------------------------------------------
+    t0 = time.time()
+    from .conformal import run_conformal_audit
+    run_conformal_audit(data)
+    telemetry["stages"]["conformal_audit"] = {
+        "duration_s": round(time.time() - t0, 1), "status": "DONE"
+    }
+
+    # -- Fairness audit ---------------------------------------------------
+    t0 = time.time()
+    from .fairness import run_fairness_audit
+    run_fairness_audit(data)
+    telemetry["stages"]["fairness_audit"] = {
+        "duration_s": round(time.time() - t0, 1), "status": "DONE"
+    }
+
     # -- O5: Acceptance ---------------------------------------------------
     t0 = time.time()
     from .acceptance import run_acceptance

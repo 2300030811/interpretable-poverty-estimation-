@@ -4,12 +4,12 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-v2.1-009688?logo=fastapi&logoColor=white)](http://localhost:8000/docs)
 [![Streamlit](https://img.shields.io/badge/Streamlit-v1.31-FF4B4B?logo=streamlit&logoColor=white)](http://localhost:8501)
 [![DuckDB](https://img.shields.io/badge/DuckDB-Embedded_Columnar-FFF000?logo=duckdb&logoColor=black)](https://duckdb.org/)
-[![Tests: 21 Passed](https://img.shields.io/badge/Tests-21%2F21%20PASS%20(100%25)-success.svg)](file:///c:/Users/bhima/OneDrive/Desktop/CAPSTONE/tests)
+[![Tests: 22 Passed](https://img.shields.io/badge/Tests-22%2F22%20PASS%20(100%25)-success.svg)](tests/)
 [![Acceptance: AC1--AC4](https://img.shields.io/badge/Acceptance-AC1--AC4%20PASS-success.svg)](outputs/acceptance/o5_acceptance.json)
-[![UN SDG 10: Fair](https://img.shields.io/badge/UN%20SDG%2010-80%25%20Fairness%20Pass-blue.svg)](outputs/results/fairness_summary.csv)
+[![UN SDG 10: Fairness Audit](https://img.shields.io/badge/UN%20SDG%2010-Fairness%20Audited%20(DI%200.73)-blue.svg)](outputs/results/fairness_summary.csv)
 [![License: Academic](https://img.shields.io/badge/Academic%20Year-2026--27-blue.svg)]()
 
-A research-grade, production-ready machine learning platform for **interpretable, cross-border household poverty estimation and social welfare targeting**. Built on harmonized World Bank Living Standards Measurement Study microdata (**EHCVM 2021** across 8 West African nations: *Benin, Burkina Faso, Côte d'Ivoire, Guinea-Bissau, Mali, Niger, Senegal, and Togo*).
+A research-grade machine learning platform for **interpretable, cross-border household poverty estimation and social welfare targeting**. Built on harmonized World Bank Living Standards Measurement Study microdata (**EHCVM 2021** across 8 West African nations: *Benin, Burkina Faso, Côte d'Ivoire, Guinea-Bissau, Mali, Niger, Senegal, and Togo*).
 
 ---
 
@@ -70,16 +70,16 @@ uvicorn api.main:app --reload --port 8000
     ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
     │ O1: DATA HARMONIZATION & SCHEMA CONTRACTS                                                       │
     │ • 3-Tier Relational Merge: menage (dwelling), individu (demographics), welfare (poverty line)   │
-    │ • 100% Pandera Data Contract Validation (24 strict assertions; zero target leakage)             │
-    │ • Key Finding: 58.4% rural poverty vs. 24.1% urban poverty across Sub-Saharan Africa            │
+    │ • 100% Pandera Data Contract Validation (24 table validations; zero target leakage)             │
+    │ • Key Finding: 43.8% pooled rural poverty vs. 20.1% urban poverty across the 8 nations          │
     └────────────────────────────────────────────────┬────────────────────────────────────────────────┘
                                                      │
                                                      ▼
     ┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
-    │ O2 & O3: CROSS-BORDER GENERALIZATION & ZERO COST OF INTERPRETABILITY                            │
+    │ O2 & O3: CROSS-BORDER GENERALIZATION & INTERPRETABILITY BENCHMARK                               │
     │ • Leave-One-Country-Out (LOCO): Trains on 7 nations, evaluates strictly on unseen 8th nation     │
-    │ • Zero Cost of Interpretability: EBM (74.8%) beats Random Forest (74.0%) by +0.8 pp             │
-    │ • LightGBM + Tree-SHAP achieves 76.4% macro accuracy, matching black-box XGBoost (76.3%)       │
+    │ • Empirical Trade-off: EBM (74.8%) beats Random Forest (74.0%) by +0.8 pp                       │
+    │ • Linear Transparency: Logistic Regression achieves 0.848 AUC, within 0.1 pp of XGBoost (0.849) │
     └────────────────────────────────────────────────┬────────────────────────────────────────────────┘
                                                      │
                                                      ▼
@@ -87,7 +87,7 @@ uvicorn api.main:app --reload --port 8000
     │ O3 (EXT): COUNTERFACTUAL POLICY RECOURSE ("HOW TO ESCAPE POVERTY")                              │
     │ • Solves optimization for minimum-cost actionable upgrades across 11 actionable levers          │
     │ • Preserves immutable features (age, gender, ethnicity, shocks, location)                      │
-    │ • Outputs practical policy roadmap (e.g. broadband voucher, off-grid solar, livestock micro-aid) │
+    │ • Outputs practical policy roadmap (e.g. connectivity voucher, grid subsidy, sanitation, wage) │
     └────────────────────────────────────────────────┬────────────────────────────────────────────────┘
                                                      │
                                                      ▼
@@ -246,7 +246,7 @@ CAPSTONE/
     │   ├── dashboard_utils.py  # Visualizations, risk meter & SHAP narrative engine
     │   ├── db.py               # Embedded DuckDB analytical database tables
     │   ├── fairness.py         # UN SDG 10 Algorithmic Fairness auditing engine
-    │   ├── recourse.py         # Greedy multi-action counterfactual recourse engine
+    │   ├── recourse.py         # Combinatorial counterfactual recourse engine (11 actionable levers)
     │   ├── models.py           # Black-box baseline models (RF, XGBoost)
     │   ├── interpretable.py    # Interpretable models (EBM, LightGBM, LogReg)
     │   ├── targeting.py        # Asymmetric welfare loss optimization

@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PROJECT_DIR = ROOT / "EHCVM_Project" / "EHCVM_Project"
+PROJECT_DIR = ROOT / "dsci28"
 if str(PROJECT_DIR) not in sys.path:
     sys.path.insert(0, str(PROJECT_DIR))
 

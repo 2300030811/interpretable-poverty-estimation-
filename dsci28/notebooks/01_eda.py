@@ -5,7 +5,7 @@ Generates summary tables and plots saved to outputs/eda/.
 Run after the pipeline has produced clean CSVs in data/processed/.
 
 Usage:
-    cd EHCVM_Project/EHCVM_Project
+    cd dsci28
     python -m notebooks.01_eda
 """
 import sys

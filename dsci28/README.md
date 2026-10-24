@@ -101,7 +101,7 @@ All formal criteria specified in **DSCI-28** passed under independent verificati
 ## Project Structure
 
 ```
-EHCVM_Project/
+dsci28/
 ├── data/
 │   ├── raw/                  # Original EHCVM 2021 survey extracts
 │   └── processed/            # 8 cleaned country CSVs + data lineage report
@@ -147,7 +147,7 @@ EHCVM_Project/
 ### 1. Prerequisites & Environment Setup
 
 ```bash
-cd EHCVM_Project/EHCVM_Project
+cd dsci28
 pip install numpy pandas scikit-learn lightgbm xgboost interpret shap matplotlib seaborn pandera
 ```
 

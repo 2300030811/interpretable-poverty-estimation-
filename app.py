@@ -12,7 +12,7 @@ import numpy as np
 
 # Ensure project modules can be imported
 APP_DIR = Path(__file__).resolve().parent
-PROJECT_DIR = APP_DIR / "EHCVM_Project" / "EHCVM_Project"
+PROJECT_DIR = APP_DIR / "dsci28"
 if str(PROJECT_DIR) not in sys.path:
     sys.path.insert(0, str(PROJECT_DIR))
 

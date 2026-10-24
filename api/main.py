@@ -19,7 +19,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # Ensure core project modules are accessible
 API_DIR = Path(__file__).resolve().parent
 ROOT_DIR = API_DIR.parent
-PROJECT_DIR = ROOT_DIR / "EHCVM_Project" / "EHCVM_Project"
+PROJECT_DIR = ROOT_DIR / "dsci28"
 if str(PROJECT_DIR) not in sys.path:
     sys.path.insert(0, str(PROJECT_DIR))
 

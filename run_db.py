@@ -5,7 +5,7 @@ Allows running `python run_db.py` directly from the repository root.
 import sys
 from pathlib import Path
 
-PROJECT_DIR = Path(__file__).resolve().parent / "EHCVM_Project" / "EHCVM_Project"
+PROJECT_DIR = Path(__file__).resolve().parent / "dsci28"
 if str(PROJECT_DIR) not in sys.path:
     sys.path.insert(0, str(PROJECT_DIR))
 

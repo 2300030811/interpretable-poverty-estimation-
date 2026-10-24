@@ -16,7 +16,7 @@ def main():
     print("=" * 60)
     print("1. Starting FastAPI Microservice on http://localhost:8000 ...")
     env = os.environ.copy()
-    env["PYTHONPATH"] = os.path.join(root_dir, "EHCVM_Project", "EHCVM_Project")
+    env["PYTHONPATH"] = os.path.join(root_dir, "dsci28")
 
     api_proc = subprocess.Popen(
         [sys.executable, "-m", "uvicorn", "api.main:app", "--port", "8000"],

@@ -4,7 +4,7 @@
 Run after `python -m src.run_all` has generated all results.
 
 Usage:
-    cd EHCVM_Project/EHCVM_Project
+    cd dsci28
     python -m notebooks.02_results
 """
 import sys

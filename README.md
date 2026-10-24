@@ -239,7 +239,7 @@ CAPSTONE/
 │   ├── test_fairness.py        # UN SDG 10 disparate impact ratio tests
 │   ├── test_recourse.py        # Counterfactual recourse & immutability tests
 │   └── test_targeting.py       # Asymmetric welfare targeting & monotonicity tests
-└── EHCVM_Project/EHCVM_Project/
+└── dsci28/
     ├── src/
     │   ├── adapter.py          # Multilingual synonym survey adapter
     │   ├── conformal.py        # Distribution-free split conformal classifier

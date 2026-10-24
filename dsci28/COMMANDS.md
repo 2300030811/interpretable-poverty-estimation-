@@ -61,7 +61,7 @@ uvicorn api.main:app --reload --port 8000
 | **Run Pytest Suite** | `python -m pytest tests/` | Runs all **21 automated unit & integration tests** in ~6s (100% pass). |
 | **Inspect DuckDB Database** | `python run_db.py` | Queries `ehcvm.duckdb` and prints table row counts (55,922 households, 40 calibration tuples). |
 | **Build Defense Presentation** | `node generate_deck_final.js` | Generates 17-slide widescreen presentation deck: `DSCI28_Final_Capstone_Presentation.pptx`. |
-| **Generate Publication Figures** | `cd EHCVM_Project/EHCVM_Project; python -m notebooks.02_results` | Generates all 6 high-resolution PNG charts in `outputs/results/`. |
+| **Generate Publication Figures** | `cd dsci28; python -m notebooks.02_results` | Generates all 6 high-resolution PNG charts in `outputs/results/`. |
 
 ---
 
@@ -83,7 +83,7 @@ pip install -r requirements.txt
 To ensure UTF-8 encoding across all Windows PowerShell terminals:
 ```powershell
 $env:PYTHONIOENCODING = "utf-8"
-$env:PYTHONPATH = "EHCVM_Project/EHCVM_Project"
+$env:PYTHONPATH = "dsci28"
 ```
 
 ---
@@ -92,9 +92,9 @@ $env:PYTHONPATH = "EHCVM_Project/EHCVM_Project"
 
 If examiners ask to execute individual scientific modules from the terminal:
 
-Execute from `EHCVM_Project/EHCVM_Project`:
+Execute from `dsci28`:
 ```powershell
-cd EHCVM_Project/EHCVM_Project
+cd dsci28
 
 # 1. Embedded DuckDB Analytics & SQL Tables (55,922 households)
 python -m src.db
@@ -139,6 +139,6 @@ docker run -p 8000:8000 -p 8501:8501 dsci28-capstone
 
 | Issue | Root Cause | Solution |
 |---|---|---|
-| `ModuleNotFoundError: No module named 'src'` | Python run from root without module path. | Run with `$env:PYTHONPATH = "EHCVM_Project/EHCVM_Project"` or use root helper scripts (`run_all.py`, `run_db.py`). |
+| `ModuleNotFoundError: No module named 'src'` | Python run from root without module path. | Run with `$env:PYTHONPATH = "dsci28"` or use root helper scripts (`run_all.py`, `run_db.py`). |
 | `UnicodeEncodeError: 'charmap'` | Windows default code page cp1252. | All files now enforce `encoding="utf-8"`. Run `$env:PYTHONIOENCODING = "utf-8"`. |
 | Port 8000 or 8501 already in use | Previous process still running in background. | Kill previous process via task manager or run on an alternate port (`--port 8001`). |

@@ -32,7 +32,7 @@ const MARGIN = 0.6;
 const CONTENT_W = PAGE_W - MARGIN * 2; // 12.133
 
 // Image paths
-const EDA_DIR = path.join(__dirname, "EHCVM_Project", "EHCVM_Project", "outputs", "eda");
+const EDA_DIR = path.join(__dirname, "dsci28", "outputs", "eda");
 const DIAGRAMS_DIR = path.join(__dirname, "images");
 
 // ---------- HELPERS ----------

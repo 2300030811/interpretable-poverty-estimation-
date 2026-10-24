@@ -188,10 +188,10 @@ graph TD
 ```
 
 ## 4.2 Software Stack & Codebase Structure
-The project is organized in a modular production architecture inside `EHCVM_Project/EHCVM_Project/`:
+The project is organized in a modular production architecture inside `dsci28/`:
 
 ```
-EHCVM_Project/EHCVM_Project/
+dsci28/
 ├── src/
 │   ├── __init__.py
 │   ├── config.py         # Country registry, metadata, absolute paths, 7 feature group definitions

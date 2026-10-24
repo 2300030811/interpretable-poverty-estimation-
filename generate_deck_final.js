@@ -32,7 +32,7 @@ const MARGIN = 0.6;
 const CONTENT_W = PAGE_W - MARGIN * 2; // 12.133
 
 // Image paths
-const RESULTS_DIR = path.join(__dirname, "EHCVM_Project", "EHCVM_Project", "outputs", "results");
+const RESULTS_DIR = path.join(__dirname, "dsci28", "outputs", "results");
 
 // ---------- HELPERS ----------
 function lightSlide() {
@@ -726,7 +726,7 @@ const TOTAL_SLIDES = 17;
     x: MARGIN + 0.3, y: 1.8, w: 5.2, h: 0.35,
     fontFace: FONT_BODY, fontSize: 12, bold: true, color: NAVY,
   });
-  s.addText("cd EHCVM_Project/EHCVM_Project\npython -m src.run_all\n\n• Automated Pipeline Orchestration:\n  Executes O2 Baselines → O3 Interpretable Models → O4 Targeting Optimization → O5 Acceptance Testing → 5 Negative Tests.\n\n• Frozen Execution Envelope:\n  Random seed 42 fixed across all folds.\n  Lineage hash verified against raw World Bank surveys.\n\n• Complete Execution Profile:\n  Total execution time: 2,572 seconds (42.9 min)\n  Outputs versioned JSON, CSV, and markdown reports.", {
+  s.addText("cd dsci28\npython -m src.run_all\n\n• Automated Pipeline Orchestration:\n  Executes O2 Baselines → O3 Interpretable Models → O4 Targeting Optimization → O5 Acceptance Testing → 5 Negative Tests.\n\n• Frozen Execution Envelope:\n  Random seed 42 fixed across all folds.\n  Lineage hash verified against raw World Bank surveys.\n\n• Complete Execution Profile:\n  Total execution time: 2,572 seconds (42.9 min)\n  Outputs versioned JSON, CSV, and markdown reports.", {
     x: MARGIN + 0.3, y: 2.2, w: 5.2, h: 4.1,
     fontFace: FONT_BODY, fontSize: 11, color: TEXT_DARK, lineSpacingMultiple: 1.25,
   });

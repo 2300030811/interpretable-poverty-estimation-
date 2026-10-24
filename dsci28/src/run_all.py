@@ -2,7 +2,7 @@
 run_all.py — One-command end-to-end runner (FR-6).
 
 Usage:
-    cd EHCVM_Project/EHCVM_Project
+    cd dsci28
     python -m src.run_all
 """
 import sys

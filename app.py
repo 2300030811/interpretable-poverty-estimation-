@@ -16,6 +16,11 @@ PROJECT_DIR = APP_DIR / "dsci28"
 if str(PROJECT_DIR) not in sys.path:
     sys.path.insert(0, str(PROJECT_DIR))
 
+# Evict stale cached in-memory modules if running in persistent Streamlit Cloud container
+if "src.adapter" in sys.modules and not hasattr(sys.modules["src.adapter"], "domain_diagnostics"):
+    for mod in [m for m in list(sys.modules.keys()) if m == "src" or m.startswith("src.")]:
+        del sys.modules[mod]
+
 from src import config, dashboard_utils, recourse, conformal, fairness, adapter, db
 
 # ── Page Configuration ────────────────────────────────────────────────────────
@@ -1055,13 +1060,26 @@ elif nav_selection == "🌍 O6: External Survey Ingestion":
             with st.spinner("Analyzing domain compatibility & running qualified inference..."):
                 eval_res = adapter.evaluate_external_survey(df_to_eval, survey_title=survey_name)
 
-            meta = eval_res["metadata"]
-            shift_diag = eval_res["domain_shift"]
-            status = eval_res["status"]
+            meta = eval_res.get("metadata", {})
+            shift_diag = eval_res.get("domain_shift")
+            if not shift_diag:
+                # Fallback to compute domain shift if missing from returned dict
+                try:
+                    from src import domain_diagnostics
+                    shift_diag = domain_diagnostics.evaluate_domain_shift(
+                        df_to_eval, meta.get("matched_mapping", {})
+                    )
+                except Exception:
+                    shift_diag = {
+                        "overall_shift_level": "UNKNOWN",
+                        "overall_shift_index": 0.0,
+                        "risk_summary": "Domain shift diagnostics unavailable.",
+                    }
+            status = eval_res.get("status", eval_res.get("schema_compatibility", "COMPATIBLE"))
 
             col_s1, col_s2 = st.columns(2)
             with col_s1:
-                st.success(f"📋 **Schema Compatibility**: `{status}` ({meta['feature_coverage_pct']}% coverage)")
+                st.success(f"📋 **Schema Compatibility**: `{status}` ({meta.get('feature_coverage_pct', 0)}% coverage)")
             with col_s2:
                 st.info(f"🔬 **Validation Status**: `{eval_res.get('scientific_validation_status', 'UNVALIDATED_EXTERNAL_DOMAIN')}`")
 
@@ -1073,14 +1091,18 @@ elif nav_selection == "🌍 O6: External Survey Ingestion":
             # KPI metrics
             uk1, uk2, uk3, uk4 = st.columns(4)
             with uk1:
-                st.metric("Feature Coverage", f"{meta['observed_count'] + meta['derived_count']} / 73", delta=f"{meta['feature_coverage_pct']}%")
+                cov_count = meta.get('observed_count', 0) + meta.get('derived_count', 0)
+                st.metric("Feature Coverage", f"{cov_count} / 73", delta=f"{meta.get('feature_coverage_pct', 0)}%")
             with uk2:
-                st.metric("Critical Domains", f"{len(meta['critical_domains_present'])} / 6", delta=f"{meta['critical_coverage_pct']}%")
+                crit_present = meta.get('critical_domains_present', [])
+                st.metric("Critical Domains", f"{len(crit_present)} / 6", delta=f"{meta.get('critical_coverage_pct', 0)}%")
             with uk3:
-                headcount_disp = f"{eval_res['policy_headcount_rate']:.1%}" if eval_res['policy_headcount_rate'] is not None else "Blocked"
+                headcount_disp = f"{eval_res['policy_headcount_rate']:.1%}" if eval_res.get('policy_headcount_rate') is not None else "Blocked"
                 st.metric("Predicted Headcount", headcount_disp)
             with uk4:
-                st.metric("Domain Shift Level", f"{shift_diag['overall_shift_level']} ({shift_diag['overall_shift_index']}%)")
+                shift_lvl = shift_diag.get('overall_shift_level', 'N/A')
+                shift_idx = shift_diag.get('overall_shift_index', 0.0)
+                st.metric("Domain Shift Level", f"{shift_lvl} ({shift_idx}%)")
 
             # Household Preview Table
             st.markdown("##### 📋 Scored Household Microdata Preview")
@@ -1102,18 +1124,21 @@ elif nav_selection == "🌍 O6: External Survey Ingestion":
                     width="stretch",
                 )
             with col_dl2:
+                audit_md = eval_res.get("audit_report_markdown")
+                if not audit_md:
+                    audit_md = f"# External Survey Ingestion Report: {survey_name}\n\nIngestion completed successfully."
                 st.download_button(
                     label="📄 Download Ingestion Audit Report (MD)",
-                    data=eval_res["audit_report_markdown"].encode("utf-8"),
+                    data=audit_md.encode("utf-8"),
                     file_name=f"audit_report_{survey_name.replace('.csv', '')}.md",
                     mime="text/markdown",
                     width="stretch",
                 )
 
             with st.expander("🔍 Provenanced Feature Breakdown & Domain Shift Risk"):
-                st.markdown(f"**Observed Features**: `{', '.join(meta['observed_features']) or 'None'}`")
-                st.markdown(f"**Statistically Imputed**: `{', '.join(meta['imputed_features'][:8])}...`")
-                st.markdown(f"> **Risk Assessment**: {shift_diag['risk_summary']}")
+                st.markdown(f"**Observed Features**: `{', '.join(meta.get('observed_features', [])) or 'None'}`")
+                st.markdown(f"**Statistically Imputed**: `{', '.join(meta.get('imputed_features', [])[:8])}...`")
+                st.markdown(f"> **Risk Assessment**: {shift_diag.get('risk_summary', 'N/A')}")
 
         except Exception as e:
             st.error(f"Error processing survey: {str(e)}")

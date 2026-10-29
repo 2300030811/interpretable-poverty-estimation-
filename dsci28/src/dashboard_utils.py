@@ -253,24 +253,24 @@ def get_targeting_point(targeting_analysis: dict, country: str, threshold: float
 
 def create_poverty_risk_meter(prob: float, threshold: float = 0.35) -> go.Figure:
     """
-    Creates a clean, intuitive horizontal risk meter bar chart
-    showing the household risk position against policy (tau*) and standard (0.50) cutoffs.
-    Guarantees no overlapping text or cluttered annotations.
+    Creates a clean, neutral horizontal risk meter bar chart
+    showing the household estimated risk position against policy (tau*) and standard (0.50) cutoffs.
+    Guarantees clear spacing and neutral terminology without unverified administrative assertions.
     """
     prob_pct = prob * 100
     tau_pct = threshold * 100
 
     fig = go.Figure()
 
-    # 1. Background Zone: Resilient (0 to tau*)
+    # 1. Background Zone: Below Decision Cutoff (0 to tau*)
     fig.add_trace(go.Bar(
         y=["Poverty Risk"],
         x=[tau_pct],
         orientation="h",
-        name="Resilient Zone (0% - Cutoff)",
-        marker=dict(color="rgba(16, 185, 129, 0.45)", line=dict(color="#10b981", width=1.5)),
+        name="Below Cutoff (0% - Cutoff)",
+        marker=dict(color="rgba(16, 185, 129, 0.40)", line=dict(color="#10b981", width=1.5)),
         hoverinfo="text",
-        hovertext=f"Resilient Zone (0% to {tau_pct:.0f}%): Self-Sufficient / No Aid Needed",
+        hovertext=f"Below Cutoff Zone (0% to {tau_pct:.0f}%): Estimated poverty probability < policy threshold τ*",
     ))
 
     # 2. Background Zone: Vulnerable Buffer (tau* to 50%)
@@ -280,21 +280,21 @@ def create_poverty_risk_meter(prob: float, threshold: float = 0.35) -> go.Figure
             y=["Poverty Risk"],
             x=[buffer_width],
             orientation="h",
-            name="Vulnerable Buffer (Policy Protected)",
-            marker=dict(color="rgba(245, 158, 11, 0.50)", line=dict(color="#f59e0b", width=1.5)),
+            name="Buffer Region (Cutoff - 50%)",
+            marker=dict(color="rgba(245, 158, 11, 0.45)", line=dict(color="#f59e0b", width=1.5)),
             hoverinfo="text",
-            hovertext=f"Vulnerable Buffer ({tau_pct:.0f}% to 50%): Protected by DSCI-28 Policy",
+            hovertext=f"Buffer Region ({tau_pct:.0f}% to 50%): Vulnerable margin protected under asymmetric loss calibration",
         ))
 
-    # 3. Background Zone: Severe Poverty (50% to 100%)
+    # 3. Background Zone: Elevated Risk (50% to 100%)
     fig.add_trace(go.Bar(
         y=["Poverty Risk"],
         x=[50.0 if buffer_width > 0 else 100.0 - tau_pct],
         orientation="h",
-        name="Severe Subsistence Need",
-        marker=dict(color="rgba(239, 68, 68, 0.50)", line=dict(color="#ef4444", width=1.5)),
+        name="Elevated Risk (50% - 100%)",
+        marker=dict(color="rgba(239, 68, 68, 0.45)", line=dict(color="#ef4444", width=1.5)),
         hoverinfo="text",
-        hovertext="Severe Need (50% to 100%): High Poverty Across All Standards",
+        hovertext="Elevated Risk Zone (50% to 100%): Estimated poverty probability ≥ standard 50% cutoff",
     ))
 
     # 4. Household Score Pin Marker
@@ -306,25 +306,25 @@ def create_poverty_risk_meter(prob: float, threshold: float = 0.35) -> go.Figure
         name="Household Score",
         marker=dict(
             symbol="diamond",
-            size=22,
+            size=20,
             color=marker_color,
             line=dict(color="#ffffff", width=2.5),
         ),
         text=[f"<b>{prob_pct:.1f}%</b>"],
         textposition="top center",
-        textfont=dict(size=14, color="#ffffff"),
+        textfont=dict(size=13, color="#ffffff"),
         hoverinfo="text",
-        hovertext=f"Current Household: {prob_pct:.1f}% Poverty Likelihood",
+        hovertext=f"Evaluated Household: {prob_pct:.1f}% Estimated Poverty Probability",
     ))
 
-    # Vertical reference lines without conflicting text annotations
+    # Vertical reference lines
     fig.add_vline(x=tau_pct, line_width=2.5, line_dash="dash", line_color="#f59e0b")
     if abs(threshold - 0.50) > 0.04:
         fig.add_vline(x=50.0, line_width=2, line_dash="dot", line_color="#cbd5e1")
 
-    # Custom Axis values with clear human labels
+    # Custom Axis values with clear scientific labels
     axis_vals = [0, round(tau_pct, 1), 50, 100]
-    axis_labels = ["0%", f"Our Policy ({tau_pct:.0f}%)", "Old Standard (50%)", "100%"]
+    axis_labels = ["0%", f"Policy Cutoff τ* ({tau_pct:.0f}%)", "Baseline (50%)", "100%"]
 
     fig.update_layout(
         barmode="stack",
@@ -354,7 +354,7 @@ def create_poverty_gauge(prob: float, threshold: float = 0.35) -> go.Figure:
 
 def generate_shap_narrative(contributions: list[dict], prob: float, threshold: float = 0.35) -> dict:
     """
-    Translates raw SHAP log-odds and feature values into intuitive plain-English explanations.
+    Translates raw SHAP log-odds and feature values into neutral, probability-based explanations.
     """
     risk_drivers = [c for c in contributions if c.get("shap_impact", 0) > 0]
     protective_buffers = [c for c in contributions if c.get("shap_impact", 0) < 0]
@@ -364,28 +364,30 @@ def generate_shap_narrative(contributions: list[dict], prob: float, threshold: f
 
     is_poor = prob >= threshold
     prob_pct = prob * 100
+    margin_pp = (prob - threshold) * 100
 
     if prob >= 0.70:
-        urgency = "Severe Subsistence Poverty"
+        risk_tier = "High Estimated Poverty Risk (≥70%)"
         summary_tone = "substantially exceeds"
     elif is_poor:
-        urgency = "Vulnerable / Assistance Eligible"
+        risk_tier = f"Elevated Risk Tier (≥{threshold*100:.0f}% Policy Cutoff)"
         summary_tone = "exceeds"
     else:
-        urgency = "Economically Resilient"
-        summary_tone = "remains safely below"
+        risk_tier = f"Lower Risk Tier (<{threshold*100:.0f}% Policy Cutoff)"
+        summary_tone = "is below"
 
-    headline = f"Household evaluated at **{prob_pct:.1f}% Poverty Likelihood** ({urgency})."
+    headline = f"Estimated Household Poverty Probability: **{prob_pct:.1f}%** ({risk_tier})"
     narrative_body = (
-        f"Under humanitarian policy targeting, this household {summary_tone} the policy eligibility "
-        f"threshold of $\\tau^* = {threshold:.2f}$."
+        f"The model-estimated probability {summary_tone} the policy decision cutoff "
+        f"of $\\tau^* = {threshold:.2f}$ by a margin of **{abs(margin_pp):.1f} percentage points**."
     )
 
     return {
         "headline": headline,
         "narrative_body": narrative_body,
-        "urgency": urgency,
+        "risk_tier": risk_tier,
         "is_poor": is_poor,
+        "margin_pp": margin_pp,
         "top_risks": risk_drivers[:3],
         "top_buffers": protective_buffers[:3],
     }
@@ -429,19 +431,21 @@ def create_loco_comparison_chart(tradeoff_df: pd.DataFrame) -> go.Figure:
     ))
 
     fig.update_layout(
-        title="<b>Cross-Country Generalisation (LOCO Evaluation Across 8 Nations)</b>",
         barmode="group",
-        xaxis=dict(title="Score (%)", range=[50, 100]),
-        yaxis=dict(title=""),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-        margin=dict(l=20, r=20, t=50, b=20),
+        xaxis=dict(title="Score (%)", range=[50, 100], gridcolor="rgba(255, 255, 255, 0.08)"),
+        yaxis=dict(title="", tickfont=dict(color="#cbd5e1")),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1.0, title=dict(text="")),
+        margin=dict(l=20, r=20, t=30, b=20),
         height=380,
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="#cbd5e1"),
     )
     return fig
 
 
 def create_country_breakdown_chart(comparison_df: pd.DataFrame, metric: str = "Accuracy") -> go.Figure:
-    """Grouped chart comparing all 5 models across all 8 countries."""
+    """Grouped bar chart comparing all 5 models across all 8 countries."""
     if comparison_df.empty:
         return go.Figure()
 
@@ -451,15 +455,63 @@ def create_country_breakdown_chart(comparison_df: pd.DataFrame, metric: str = "A
         y=metric,
         color="Model",
         barmode="group",
-        title=f"<b>Cross-Country Transfer: {metric} per Nation</b>",
-        color_discrete_sequence=["#2563eb", "#dc2626", "#16a34a", "#9333ea", "#d97706"],
+        color_discrete_sequence=["#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899"],
     )
     fig.update_layout(
-        yaxis=dict(title=metric, tickformat=".1%"),
-        xaxis=dict(title="Evaluated Hold-Out Nation (LOCO Fold)"),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5),
-        margin=dict(l=20, r=20, t=60, b=20),
-        height=420,
+        yaxis=dict(title=metric, tickformat=".1%", gridcolor="rgba(255, 255, 255, 0.08)", tickfont=dict(color="#cbd5e1")),
+        xaxis=dict(title="Evaluated Hold-Out Nation (LOCO Fold)", tickfont=dict(color="#cbd5e1")),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1.0,
+            title=dict(text=""),
+            font=dict(color="#cbd5e1", size=11),
+        ),
+        margin=dict(l=10, r=10, t=30, b=20),
+        height=400,
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="#cbd5e1"),
+    )
+    return fig
+
+
+def create_country_heatmap_chart(comparison_df: pd.DataFrame, metric: str = "Accuracy") -> go.Figure:
+    """Create an interactive dark-theme heatmap of models across countries."""
+    if comparison_df.empty:
+        return go.Figure()
+
+    pivot = comparison_df.pivot(index="Country", columns="Model", values=metric)
+    col_order = [c for c in ["EBM (GAM)", "LightGBM", "Random Forest", "XGBoost", "Logistic Regression"] if c in pivot.columns]
+    if col_order:
+        pivot = pivot[col_order]
+
+    z_vals = pivot.values * 100 if metric in ["Accuracy", "AUC-ROC", "F1"] else pivot.values
+
+    fig = go.Figure(go.Heatmap(
+        z=z_vals,
+        x=pivot.columns.tolist(),
+        y=pivot.index.tolist(),
+        text=[[f"{v:.1f}%" for v in row] for row in z_vals],
+        texttemplate="%{text}",
+        textfont=dict(size=12, color="#ffffff"),
+        colorscale="Viridis",
+        colorbar=dict(
+            title=dict(text=f"{metric} (%)", font=dict(color="#cbd5e1")),
+            tickfont=dict(color="#cbd5e1"),
+        ),
+        hoverongaps=False,
+    ))
+    fig.update_layout(
+        margin=dict(l=20, r=20, t=20, b=20),
+        height=380,
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="#cbd5e1"),
+        xaxis=dict(title="", tickfont=dict(color="#cbd5e1")),
+        yaxis=dict(title="", tickfont=dict(color="#cbd5e1")),
     )
     return fig
 
@@ -496,28 +548,40 @@ def create_targeting_tradeoff_chart(targeting_df: pd.DataFrame, selected_country
             line_color="#10b981",
             annotation_text=f"Active τ = {current_tau:.2f}",
             annotation_position="top left",
+            annotation_font=dict(color="#10b981"),
         )
 
     fig.update_layout(
-        title=f"<b>Policy Targeting Trade-Off Curve ({selected_country})</b>",
-        xaxis=dict(title="Decision Threshold (τ)", range=[0, 1]),
-        yaxis=dict(title="Error Rate (%)", range=[0, 100]),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5),
-        margin=dict(l=20, r=20, t=60, b=20),
+        xaxis=dict(title="Decision Threshold (τ)", range=[0, 1], gridcolor="rgba(255, 255, 255, 0.08)"),
+        yaxis=dict(title="Error Rate (%)", range=[0, 100], gridcolor="rgba(255, 255, 255, 0.08)"),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1.0, title=dict(text="")),
+        margin=dict(l=20, r=20, t=30, b=20),
         height=380,
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="#cbd5e1"),
     )
     return fig
 
 
 def create_local_shap_waterfall_chart(contributions: list[dict], prob: float) -> go.Figure:
-    """Horizontal bar chart illustrating local feature forces."""
+    """
+    Horizontal bar chart illustrating local feature forces.
+    Units are additive contributions to the model margin in log-odds (phi_i).
+    """
     if not contributions:
         return go.Figure()
 
     sorted_items = sorted(contributions, key=lambda x: x["shap_impact"])
     labels = [x["label"] for x in sorted_items]
     impacts = [x["shap_impact"] for x in sorted_items]
+    values = [x.get("value", "N/A") for x in sorted_items]
     colors = ["#ef4444" if val > 0 else "#10b981" for val in impacts]
+
+    hover_texts = [
+        f"Feature: <b>{lbl}</b><br>Observed Value: <b>{val}</b><br>SHAP Contribution: <b>{imp:+.4f} log-odds</b>"
+        for lbl, val, imp in zip(labels, values, impacts)
+    ]
 
     fig = go.Figure(go.Bar(
         x=impacts,
@@ -526,14 +590,31 @@ def create_local_shap_waterfall_chart(contributions: list[dict], prob: float) ->
         marker=dict(color=colors),
         text=[f"{val:+.3f}" for val in impacts],
         textposition="outside",
+        textfont=dict(size=11, color="#cbd5e1"),
+        hoverinfo="text",
+        hovertext=hover_texts,
     ))
 
     fig.update_layout(
-        title=f"<b>Local SHAP Feature Attribution (Poverty Risk: {prob:.1%})</b><br>"
-              f"<span style='font-size:12px; color:gray'>Red = Increases Poverty Likelihood | Green = Decreases Poverty Likelihood</span>",
-        xaxis=dict(title="SHAP Value (Log-Odds Impact)"),
-        yaxis=dict(title=""),
-        margin=dict(l=20, r=40, t=60, b=20),
+        title=dict(
+            text=f"<b>Local Tree-SHAP Feature Attribution</b> (Estimated Risk: {prob:.1%})<br>"
+                 f"<span style='font-size:11px; color:#94a3b8;'>Units: Additive log-odds (φ_i) to model margin. Coral = increases risk; Teal = protective buffer.</span>",
+            font=dict(size=13, color="#f8fafc"),
+        ),
+        xaxis=dict(
+            title="SHAP Value (Log-Odds Contribution to Margin)",
+            gridcolor="rgba(255, 255, 255, 0.08)",
+            tickfont=dict(color="#cbd5e1"),
+            title_font=dict(color="#cbd5e1", size=11),
+        ),
+        yaxis=dict(
+            title="",
+            tickfont=dict(color="#cbd5e1", size=11),
+        ),
+        margin=dict(l=20, r=45, t=55, b=25),
         height=430,
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="#cbd5e1"),
     )
     return fig

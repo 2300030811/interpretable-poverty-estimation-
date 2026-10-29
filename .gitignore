@@ -28,6 +28,23 @@ Thumbs.db
 
 # Scratch & Temporary
 scratch/
+*.zip
+*.tar.gz
+*.gz
+
+# Local Validation Working Audits & Intermediate Dumps
+nlss_*audit*.md
+nlss_*audit*.csv
+nlss_archive_integrity_report.md
+nlss_data_quality_report.md
+nlss_domain_compatibility_report.md
+nlss_file_inventory.csv
+nlss_feature_mapping.csv
+nlss_metrics_consistency_check.md
+nlss_reproducibility_manifest.json
+nlss_sensitivity_analysis.json
+engineering_audit.md
+CAPSTONE_NEXT_STEPS.md
 
 # Presentations & Slides
 *.pptx

@@ -101,4 +101,96 @@ def test_api_upload_survey():
     assert response.status_code == 200
     data = response.json()
     assert data["n_households"] == 2
-    assert "policy_headcount_rate" in data
+    assert "status" in data
+    assert data["schema_compatibility"] in ("COMPATIBLE", "EXPLORATORY", "INSUFFICIENT")
+    assert data["scientific_validation_status"] == "UNVALIDATED_EXTERNAL_DOMAIN"
+    assert data["eligibility_determination_permitted"] is False
+    assert "domain_shift" in data
+
+
+def test_api_upload_empty_csv_returns_400():
+    """Verify empty CSV upload returns HTTP 400 with sanitized error."""
+    response = client.post(
+        "/v1/upload-survey",
+        files={"file": ("empty.csv", b"", "text/csv")}
+    )
+    assert response.status_code == 400
+    assert "empty" in response.json()["detail"].lower()
+
+
+def test_api_upload_multi_module():
+    """Verify multi-module upload endpoint joins menage and welfare."""
+    menage_csv = b"hhid,roof_type,grid_electricity\n1,2,0\n2,3,1\n"
+    welfare_csv = b"hhid,family_size,head_age\n1,7,45\n2,3,38\n"
+
+    response = client.post(
+        "/v1/upload-multi-module",
+        files={
+            "menage_file": ("menage.csv", menage_csv, "text/csv"),
+            "welfare_file": ("welfare.csv", welfare_csv, "text/csv"),
+        }
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["n_households"] == 2
+    assert "merge_audit" in data
+    assert data["scientific_validation_status"] == "UNVALIDATED_EXTERNAL_DOMAIN"
+    assert data["eligibility_determination_permitted"] is False
+
+
+def test_api_upload_multi_module_zero_overlap_returns_400():
+    """Verify zero overlap between required household modules returns HTTP 400."""
+    menage_csv = b"hhid,roof_type\n1,2\n2,3\n"
+    welfare_csv = b"hhid,family_size\n100,5\n200,4\n"
+
+    response = client.post(
+        "/v1/upload-multi-module",
+        files={
+            "menage_file": ("menage.csv", menage_csv, "text/csv"),
+            "welfare_file": ("welfare.csv", welfare_csv, "text/csv"),
+        }
+    )
+    assert response.status_code == 400
+    assert "zero overlapping 'hhid' identifiers" in response.json()["detail"].lower()
+
+
+def test_api_upload_multi_module_conflicting_duplicates_returns_400():
+    """Verify conflicting duplicate identifiers return HTTP 400."""
+    menage_csv = b"hhid,roof_type\n1,2\n1,5\n2,3\n"
+
+    response = client.post(
+        "/v1/upload-multi-module",
+        files={
+            "menage_file": ("menage.csv", menage_csv, "text/csv"),
+        }
+    )
+    assert response.status_code == 400
+    assert "conflicting duplicate records" in response.json()["detail"].lower()
+
+
+def test_api_predict_unsupported_external_country_marked_unvalidated():
+    """Verify single-household prediction for non-EHCVM country marks UNVALIDATED_EXTERNAL_DOMAIN."""
+    payload = {
+        "country": "Nigeria",
+        "features": {"hhsize": 6.0, "elec_ac": 1.0},
+        "policy_threshold": 0.35
+    }
+    response = client.post("/v1/predict", json=payload)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["is_supported_country"] is False
+    assert data["scientific_validation_status"] == "UNVALIDATED_EXTERNAL_DOMAIN"
+
+
+def test_api_recourse_unsupported_external_country_marked_unvalidated():
+    """Verify recourse generation for non-EHCVM country marks UNVALIDATED_EXTERNAL_DOMAIN."""
+    payload = {
+        "country": "Nigeria",
+        "features": {"hhsize": 10.0, "elec_ac": 0.0},
+        "policy_threshold": 0.35
+    }
+    response = client.post("/v1/recourse", json=payload)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["is_supported_country"] is False
+    assert data["scientific_validation_status"] == "UNVALIDATED_EXTERNAL_DOMAIN"

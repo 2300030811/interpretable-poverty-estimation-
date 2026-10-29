@@ -10,7 +10,7 @@ Provides high-performance, validated endpoints for:
 """
 import sys
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException, UploadFile, File, Query
@@ -120,11 +120,16 @@ def predict_household(req: PredictRequest):
         for c in res.get("top_contributions", [])
     ]
 
+    is_supported = req.country in config.COUNTRIES
+    val_status = "VALIDATED_EHCVM_INTERNAL" if is_supported else "UNVALIDATED_EXTERNAL_DOMAIN"
+
     return PredictResponse(
         probability_poor=res["probability_poor"],
         is_poor_policy=res["is_poor_policy"],
         policy_threshold=req.policy_threshold,
         top_contributions=top_contribs,
+        scientific_validation_status=val_status,
+        is_supported_country=is_supported,
     )
 
 
@@ -173,6 +178,9 @@ def generate_counterfactual_recourse(req: RecourseRequest):
                 )
             )
 
+    is_supported = req.country in config.COUNTRIES
+    val_status = "VALIDATED_EHCVM_INTERNAL" if is_supported else "UNVALIDATED_EXTERNAL_DOMAIN"
+
     return RecourseResponse(
         baseline_probability=float(rec_res["baseline_probability"]),
         achieved_probability=float(rec_res["achieved_probability"]),
@@ -180,6 +188,9 @@ def generate_counterfactual_recourse(req: RecourseRequest):
         flips_decision=flips,
         total_policy_cost=tot_cost,
         recommended_actions=actions,
+        causal_disclaimer=rec_res.get("causal_disclaimer"),
+        scientific_validation_status=val_status,
+        is_supported_country=is_supported,
     )
 
 
@@ -224,20 +235,91 @@ def get_fairness_audit():
 @app.post("/v1/upload-survey", tags=["Domain Adaptation"])
 async def upload_and_evaluate_survey(
     file: UploadFile = File(...),
-    threshold: float = Query(0.35, ge=0.0, le=1.0)
+    threshold: float = Query(0.35, ge=0.0, le=1.0),
+    allow_exploratory: bool = Query(True),
 ):
     """
     Upload external survey CSV (e.g. from an unseen country with different column names)
-    and receive automated harmonization, poverty headcount, conformal triage, and policy recourse.
+    and receive automated harmonization, compatibility check, domain shift diagnostics,
+    calibrated poverty predictions, conformal triage, and policy recourse.
     """
     try:
-        df_uploaded = pd.read_csv(file.file)
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Failed to read CSV file: {str(e)}")
+        content = await file.read()
+        if not content or len(content.strip()) == 0:
+            raise HTTPException(
+                status_code=400,
+                detail="Uploaded CSV file is empty. Please provide a valid CSV file with household survey data."
+            )
+        import io
+        df_uploaded = pd.read_csv(io.BytesIO(content))
+        if len(df_uploaded) == 0:
+            raise HTTPException(
+                status_code=400,
+                detail="Uploaded CSV file has zero data rows. Please provide at least one household record."
+            )
+    except HTTPException:
+        raise
+    except Exception:
+        # Sanitized error message without leaking internal stack traces or system paths
+        raise HTTPException(
+            status_code=400,
+            detail="Failed to parse CSV file: invalid format, delimiter, or encoding."
+        )
+
+    try:
+        eval_result = adapter.evaluate_external_survey(
+            df_uploaded,
+            survey_title=file.filename or "Uploaded Survey",
+            policy_threshold=threshold,
+            allow_exploratory=allow_exploratory,
+        )
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=f"Survey evaluation error: {str(ve)}")
+    return eval_result
+
+
+@app.post("/v1/upload-multi-module", tags=["Domain Adaptation"])
+async def upload_multi_module_survey(
+    menage_file: UploadFile = File(..., description="Household housing & assets CSV"),
+    welfare_file: Optional[UploadFile] = File(None, description="Household head & demographics CSV"),
+    individu_file: Optional[UploadFile] = File(None, description="Individual roster CSV"),
+    threshold: float = Query(0.35, ge=0.0, le=1.0),
+):
+    """
+    Join multiple survey modules (menage, welfare, individu) with verified join cardinality,
+    roster aggregation, and target-leakage quarantine, then run evaluation pipeline.
+    """
+    import io
+    try:
+        m_bytes = await menage_file.read()
+        if not m_bytes or len(m_bytes.strip()) == 0:
+            raise HTTPException(status_code=400, detail="Ménage module file is empty.")
+        df_menage = pd.read_csv(io.BytesIO(m_bytes))
+
+        df_welfare = None
+        if welfare_file is not None:
+            w_bytes = await welfare_file.read()
+            if w_bytes and len(w_bytes.strip()) > 0:
+                df_welfare = pd.read_csv(io.BytesIO(w_bytes))
+
+        df_indiv = None
+        if individu_file is not None:
+            i_bytes = await individu_file.read()
+            if i_bytes and len(i_bytes.strip()) > 0:
+                df_indiv = pd.read_csv(io.BytesIO(i_bytes))
+
+        df_merged, merge_audit = adapter.merge_survey_modules(df_menage, df_welfare, df_indiv)
+    except HTTPException:
+        raise
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=f"Module merge error: {str(ve)}")
+    except Exception:
+        raise HTTPException(status_code=400, detail="Failed to parse or join multi-module survey files.")
 
     eval_result = adapter.evaluate_external_survey(
-        df_uploaded,
-        survey_title=file.filename or "Uploaded Survey",
+        df_merged,
+        survey_title=f"Multi-Module: {menage_file.filename}",
         policy_threshold=threshold,
     )
+    eval_result["merge_audit"] = merge_audit
     return eval_result

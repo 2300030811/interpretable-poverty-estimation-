@@ -6,7 +6,7 @@ Given a household predicted as poor (P(poor) >= threshold), computes the minimum
 monotonically valid set of actionable feature interventions to flip the prediction
 to non-poor (P(poor) < threshold).
 """
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Set
 import copy
 import pandas as pd
 import numpy as np
@@ -108,17 +108,23 @@ def compute_recourse(
     feature_cols: List[str],
     policy_threshold: float = 0.35,
     max_steps: int = 3,
+    observed_features: Optional[Set[str]] = None,
 ) -> Dict[str, Any]:
     """
     Compute optimal counterfactual recourse for a single household.
     
     ponytail: Uses fast greedy search over the 11 actionable levers.
-    Exhaustive search over 11 levers with max_steps=3 is at most C(11,1)+C(11,2)+C(11,3)=231
-    model predictions, which runs in <30ms total.
+    Identifies whether each suggested intervention modifies an OBSERVED household feature
+    or an IMPUTED baseline median, and attaches an explicit non-causal policy disclaimer.
     """
     # Create baseline row DataFrame
     x_base = pd.DataFrame([[household_dict.get(c, 0.0) for c in feature_cols]], columns=feature_cols)
     p_base = float(model.predict_proba(x_base)[0, 1])
+
+    causal_disclaimer = (
+        "Counterfactual recourse represents mathematical sensitivity of the trained LightGBM classifier, "
+        "NOT causal evidence that implementing these interventions will alleviate real-world poverty."
+    )
 
     result = {
         "baseline_probability": p_base,
@@ -129,6 +135,7 @@ def compute_recourse(
         "optimal_plan": None,
         "achieved_probability": p_base,
         "status": "NON_POOR" if p_base < policy_threshold else "SEARCHING",
+        "causal_disclaimer": causal_disclaimer,
     }
 
     if p_base < policy_threshold:
@@ -144,6 +151,7 @@ def compute_recourse(
         current_val = float(household_dict.get(feat, 0.0))
         target_val = float(meta["target_val"])
         if current_val < target_val:
+            is_obs = (observed_features is None) or (feat in observed_features)
             candidate_actions.append({
                 "feature": feat,
                 "label": meta["label"],
@@ -152,6 +160,8 @@ def compute_recourse(
                 "target_val": target_val,
                 "cost_weight": meta["cost_weight"],
                 "description": meta["description"],
+                "provenance": "OBSERVED" if is_obs else "IMPUTED_MEDIAN",
+                "is_imputed": not is_obs,
             })
 
     if not candidate_actions:

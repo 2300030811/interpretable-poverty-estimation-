@@ -13,6 +13,7 @@ import pandas as pd
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parent.parent
+APP_PATH = str(ROOT / "app.py")
 PROJECT_DIR = ROOT / "dsci28"
 if str(PROJECT_DIR) not in sys.path:
     sys.path.insert(0, str(PROJECT_DIR))
@@ -33,7 +34,7 @@ def _nav_to(app_instance, partial_name: str):
 @pytest.fixture(scope="function")
 def app():
     """Load a fresh, isolated Streamlit app instance for each independent test."""
-    at = AppTest.from_file("app.py", default_timeout=25)
+    at = AppTest.from_file(APP_PATH, default_timeout=25)
     at.run()
     assert not at.exception, f"App startup exception: {at.exception}"
     return at
@@ -108,7 +109,7 @@ def test_objective_1_data_and_schema_views(app):
 def test_objective_1_missing_microdata_graceful(monkeypatch):
     """Verify O1 displays graceful warning when sample microdata is absent."""
     monkeypatch.setattr(dashboard_utils, "load_sample_microdata", lambda *args, **kwargs: pd.DataFrame())
-    at = AppTest.from_file("app.py", default_timeout=25).run()
+    at = AppTest.from_file(APP_PATH, default_timeout=25).run()
     _nav_to(at, "O1: Survey Data & Schema")
     # Warning should be rendered when microdata is empty
     warnings = [str(w.value) for w in at.warning]
@@ -150,7 +151,7 @@ def test_objective_2_missing_artifact_graceful(monkeypatch):
     tampered["tradeoff_table"] = pd.DataFrame()
     monkeypatch.setattr(dashboard_utils, "load_csv_summaries", lambda: tampered)
 
-    at = AppTest.from_file("app.py", default_timeout=25).run()
+    at = AppTest.from_file(APP_PATH, default_timeout=25).run()
     _nav_to(at, "O2: LOCO Benchmarks")
     assert not at.exception
 
@@ -222,7 +223,7 @@ def test_objective_3_reset_parameters(app):
 def test_objective_3_missing_model_artifact(monkeypatch):
     """Verify O3 handles missing model artifact with an explicit error rather than crash."""
     monkeypatch.setattr(dashboard_utils, "load_simulator_artifact", lambda: {})
-    at = AppTest.from_file("app.py", default_timeout=25).run()
+    at = AppTest.from_file(APP_PATH, default_timeout=25).run()
     _nav_to(at, "O3: Interpretable AI & Simulator")
     errors = [str(e.value) for e in at.error]
     assert any("Simulator model artifact not found" in e for e in errors)
@@ -285,7 +286,7 @@ def test_objective_5_unverified_badges_when_passed_absent(monkeypatch):
     tampered["negative_tests"] = {"NT-1": {"description": "Test unverified NT", "passed": None}}
 
     monkeypatch.setattr(dashboard_utils, "load_json_records", lambda: tampered)
-    at = AppTest.from_file("app.py", default_timeout=25).run()
+    at = AppTest.from_file(APP_PATH, default_timeout=25).run()
     _nav_to(at, "O5: Quality Assurance & DuckDB")
 
     all_text = " ".join(str(m.value) for m in at.markdown)
